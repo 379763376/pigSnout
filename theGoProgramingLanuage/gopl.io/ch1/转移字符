@@ -8,3 +8,11 @@
 %v 变量的自然形式(natural format)
 %T 变量的类型
 %% 字面上的百分号标志(无操作数)
+
+%08b中08表示打印至少8个字符宽度
+fmt.Printf("%d %[1]o %#[1]o\n", o)
+  %[1]o [1]副词告诉Printf函数再次使用第一个操作数
+  # 副词告诉Printf在用%o、%x或%X输出时生成0、0x或0X前缀。
+
+fmt.Printf("x = %d e^x = %8.3f\n", x, math.Exp(float64(x))
+    小数点后三个小数精度和8个字符宽度

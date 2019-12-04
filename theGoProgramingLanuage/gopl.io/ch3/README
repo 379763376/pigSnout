@@ -39,3 +39,73 @@ var u uint8 = 255
 fmt.Println(u, u+1, u*u) // "255 0 1"
 var i int8 = 127
 fmt.Println(i, i+1, i*i) // "127 -128 1"
+
+fmt.Printf("%08b\n", x) %08b中08表示打印至少8个字符宽度
+
+一个x<<n左移运算等价于乘以2^n ,一个x>>n右移运算等价于除以2^n
+左移运算用零填充右边空缺的bit位
+无符号数的右移运算也是用0填充左边空缺的bit位
+有符号数的右移运算会用符号位的值填充左边空缺的bit位
+用无符号运算,可以将整数完全当作一个bit位模式处理
+
+我们还是倾向于使用有符号的int类型
+for i := len(medals) - 1; i >= 0; i-- { 如果无符号整数就会i>=0 永远为真
+
+不同精度之间转换需要显示类型转换
+浮点数转整数，向数轴零方向截断
+
+ascii 转十进制
+unicode 转十进制
+ascii := 'a'
+unicode := '国'
+newline := '\n'
+fmt.Printf("%d %[1]c %[1]q\n", ascii)// "97 a 'a'"
+fmt.Printf("%d %[1]c %[1]q\n", unicode) // "22269 国 '国'"
+fmt.Printf("%d %[1]q\n", newline)// "10 '\n'"
+
+2.浮点
+常量math.MaxFloat32
+常量math.MaxFloat64
+float32的有效bit位只有23个,其它的bit位用于指数和符号;当整数大于23bit能表达的范围时,float32的表示将出现误差
+非数NaN无效的除法操作结果0/0或Sqrt(-1)
+NaN和任何数都是不相等的
++Inf -Inf 正无穷大和负无穷大
+
+判断一个数是否非数：math.IsNaN
+测试一个结果是否是非数NaN则是充满风险的，NaN和任何数都是不相等的
+nan := math.NaN()
+fmt.Println(nan == nan, nan < nan, nan > nan) // "false false false"
+
+3.复数
+complex64和complex128
+float32和float64两种浮点数精度
+var x complex128 = complex(1, 2) // 1+2i
+var y complex128 = complex(3, 4) // 3+4i
+fmt.Println(x*y) // "(-5+10i)"
+fmt.Println(real(x*y)) // "-5"
+fmt.Println(imag(x*y)) // "10"
+x := 1 + 2i
+y := 3 + 4i
+
+4.布尔型
+true和false
+如果运算符左边值已经可以确定整个布尔表达式的值,那么运算符右边的值将不在被求值
+
+if 'a' <= c && c <= 'z' ||
+  'A' <= c && c <= 'Z' ||
+  '0' <= c && c <= '9' {  &&的优先级比||高
+// ...ASCII letter or digit...
+}
+
+s != "" && s[0] == 'x'  s[0]操作如果应用于空字符串将会导致panic异常。
+
+布尔和整形10不能转换
+
+5.字符串
+len(s)长度
+s[0]索引，超出panic
++ 两个字符串链接
+== < 逐个字节比较
+不可修改
+5.1.字符串面值
+
