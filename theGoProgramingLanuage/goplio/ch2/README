@@ -1,0 +1,153 @@
+1.命名
+字母 或 下划线 开头
+后跟任意字母、数字、下划线
+
+关键字、预定以名字
+函数内部定义
+大小写的开头
+尽量使用短小名字
+驼峰式
+
+2.声明
+var 变量
+const 常量
+type 类型
+func 函数实体对象
+包一级声明
+函数内部声明
+
+3.变量
+var s string
+var i,j,k int
+var b, f, s = true, 2.3, "four"
+3.1.简短变量声明
+i := 100
+i, j := 0, 1
+f, err := os.Open(name)
+3.2指针
+x := 1
+p := &x
+fmt.Println(*p)
+*p = 2
+fmt.Println(x)
+指针的零值都是nil
+p != nil测试为真,那么p是指向某个有效变量
+当它们指向同一个变量或全部是nil时才相等
+返回函数中局部变量的地址也是安全的
+var p = f()
+func f() *int
+f() == f() 每次调用f函数都将返回不同的结果
+*p++ 非常重要:只是增加p指向的变量的值,并不改变p指针!!!
+指针、slice、map和chan,甚至结构体、数组和接口都会创建所引用变量的别名（变量的全部别名记录：GC的工作）
+flag包的关键技术，命令行参数：
+两个可选的命令行参数:
+-n用于忽略行尾的换行符,
+-s sep用于指定分隔字符(默认是空格)
+echo4 flag案例：
+var n = flag.Bool("n", false, "omit trailing newline")
+var sep = flag.String("s", " ", "separator")
+flag.Parse() 调用先flag.Parse函数,用于更新每个标志参数对应变量的值(之前是默认值)
+fmt.Print(strings.Join(flag.Args(), *sep))
+./echo4 -help
+3.3.new函数
+表达式new(T)将创建一个T类型的匿名变量,初始化为T类型的零值,然后返回变量地址,返回的指针类型为p := new(int)*T
+p := new(int)
+fmt.Println(*p)
+*p = 2
+fmt.Println(*p)
+每次调用new函数都是返回一个新的变量的地址
+new只是一个预定义的函数,它并不是一个关键字,因此我们可以将new名字重新定义为别的类型
+func delta(old, new int) int { return new - old }
+3.4.变量的生命周期
+一个变量的有效周期只取决于是否可达,因此一个循环迭代内部的局部变量的生命周期可能超出其局部作用域。
+局部变量可能在函数返回之后依然存在
+编译器会自动选择在栈上还是在堆上分配局部变量的存储空间
+函例如基本int,数内部变量地址被外部引用就在堆上创建，局部变量从函数中逃逸了
+
+4.赋值
+4.1.
+x = 1
+*p = true
+person.name = "bob" 结构体
+count[x] = count[x] * scale 数组、slice、map
+count[x] *= scale
+v++
+v--
+x, y = y, x
+a[i], a[j] = a[j], a[i]
+最大公约数：【欧几里得GCD 平凡算法】
+func gcd(x, y int) int {
+  for y != 0 {
+    x, y = y, x%y
+  }
+  return x
+}
+斐波纳契数列：
+func fib(n int) int {
+  x, y := 0, 1
+  for i := 0; i < n; i++ {
+    x, y = y, x+y
+  }
+  return x
+}
+i, j, k = 2, 3, 5
+f, err = os.Open("foo.txt")
+v, ok = m[key] map查找，失败时返回零值
+v, ok = x.(T) 类型断言，失败时panic异常
+v, ok = <-ch channel接收，失败时返回零值(阻塞不算是失败)
+_, err = io.Copy(dst, src) 丢弃字节数
+_, ok = x.(T) 忽略具体值
+4.2.
+medals := []string{"gold", "silver", "bronze"}
+medals[0] = "gold"
+
+5.tempconv类型
+type 类型名字 底层类型
+type Celsius float64
+type Fahrenheit float64
+func CToF(c Celsius) Fahrenheit
+func FToC(f Fahrenheit) Celsius
+两个值有着不同的类型,则不能直接进行比较
+func (c Celsius) String() string {表示声明的是Celsius类型的一个叫名叫String的方法
+  return fmt.Sprintf("%g°C", c)
+}
+fmt包的打印方时,将会优先使用该类型对应的String方法返回的结果打印
+c := FToC(212.0)
+fmt.Println(c.String()) // "100°C"
+fmt.Printf("%v\n", c) // "100°C"; no need to call String explicitly
+fmt.Printf("%s\n", c) // "100°C"
+fmt.Println(c) // "100°C"
+fmt.Printf("%g\n", c) // "100"; does not call String
+fmt.Println(float64(c)) // "100"; does not call String
+
+6.包
+如果一个名字是大写字母开头的,那么该名字是导出的(译注:因为汉字不区分大小写,因此汉字开头的名字是没有导出的)
+tempconv.CToF包内的成员将通过类似的形式访问
+fmt.Println(tempconv.CToF(tempconv.BoilingC))
+6.1.cf 导入包
+import (
+  "fmt"
+  "os"
+  "strconv"
+  "gopl.io/ch2/tempconv"
+)
+6.2.包的初始化
+.go文件根据文件名排序,然后依次调用编译器编译
+如果有初始化表达式则用表达式初始化,还有一些没有初始化表达式的用一个特殊的init初始化函数来简化初始化工作
+func init() { /* ... */ }
+计算一个数含二进制1bit的个数
+1byte=8bit
+uint64=128bit
+
+7.作用域
+内部声明屏蔽了外部同名的声明,让外部的声明的名字无法被访问
+if内部
+for循环体、隐式的初始化
+if和switch语句也会在条件部分创建隐式词法域
+if中的变量在else-if/else也是有效范围
+switch语句的每个分支也有类似的词法域规则:条件部分为一个隐式词法域,然后每个是每个分支的词法域。
+如果一个变量或常量递归引用了自身,则会产生编译错误
+if f, err := os.Open(fname); err != nil{}
+f.ReadByte() 超出了范围
+var err error 单独声明err,来避免使用:=的简短声明方式cwd, err = os.Getwd()
+

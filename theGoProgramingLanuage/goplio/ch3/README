@@ -1,0 +1,41 @@
+1.整型
+int8、int16、int32和int64
+uint8、uint16、uint32和uint64
+int和uint 特定CPU平台机器字大小bit
+Unicode字符rune类型是和int32等价的类型
+byte也是uint8类型的等价类型  1byte=8bit
+byte类型一般用于强调数值是一个原始的数据而不是一个小的整数
+无符号的整数类型uintptr，没有指定具体的bit大小但是足以容纳指针
+−2^(n−1) 到2^(n−1) − 1
+0到2^n − 1
+int8类型整数的值域是从-128到127
+术运算、逻辑运算和比较运算的二元运算符,它们按照先级递减的顺序的排列:
+    * / % << >> & &^
+    + - | ^
+    == != < <= > >=
+    &&
+    ||
+使用括号也可以用于提升优先级
+取模运算符%仅用于整数间的运算
+-5%3 和 -5%-3 结果都是-2  %取模运算符的符号和被取模数的符号总是一致的
+除法运算符/ 行为则依赖于操作数是否为全为整数,整数除法会向着0方向截断余数
+
+== equal to
+!= not equal to
+< less than
+<= less than or equal to
+> greater than
+>= greater than or equal to
++ 一元加法 (无效果)
+- 负数
+& 位运算 AND
+| 位运算 OR
+^ 位运算 XOR
+&^ 位清空 (AND NOT)
+<< 左移
+>> 右移
+
+var u uint8 = 255
+fmt.Println(u, u+1, u*u) // "255 0 1"
+var i int8 = 127
+fmt.Println(i, i+1, i*i) // "127 -128 1"
