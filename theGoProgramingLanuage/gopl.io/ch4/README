@@ -8,3 +8,29 @@ q := [...]int{1, 2, 3}
 symbol := [...]string{USD: "$", EUR: "€", GBP: "£", RMB: "¥"}
 r := [...]int{99: -1} 下标为99对应的值是-1，其余0～98是0
 数组比较： 只有当两个数组的所有元素都是相等的时候数组才是相等的
+sha256案例：crypto/sha256包的使用：对一个任意的字节slice类型的数据生成一个256bit消息摘要([32]byte数组类型) 如果两个消息摘要是相同的,那么可以认为两个消息本身也是相同
+	c1 := sha256.Sum256([]byte("x"))
+数组指针：通过指针对数组的任何修改
+数值清零：*ptr = [32]byte{}
+
+2.slice
+三个部分构成： 指针、 长度和容量
+slice的slice操作s[i:j]， 其中0 ≤ i≤ j≤ cap(s)， 用于创建一个新的slice
+rev案例：反转切片：收尾互换：定位方法为切片，数组转成切片arry[:]就可以调用
+slice之间不能比较 节型slice可以用bytes.Equal函数比较 其他类型的slice展开每个元素进行比较
+    slice间接引用的,Go语言中map等哈希表之类的数据结构的key只做简单的浅拷贝,固定值的slice在不同的时间可能包含不同的元素， 因为底层数组的元素可能会被修改
+    指针或chan之类的引用类型 "==" 相等测试可以判断两个是否是引用相同的对象
+    和nil比较 if summer == nil { /* ... */ } 是合法的  零值==nil 一个nil值的slice并没有底层数组
+slice是否为nil
+    一个nil值的slice并没有底层数组
+    测试是否为空不应该是len(s),而是和nil比较
+    var s []int 是nil,s=nil 是nil,[]int(nil),[]int{}不是nil
+内置的make函数创建一个指定元素类型、 长度和容量的slice
+    make创建了一个匿名的数组变量，然后返回一个slice； 只有通过返回的slice才能引用底层匿名的数组变量
+    make([]T, len) 容量等于长度
+    make([]T, len, cap)
+append追加元素：runes = append(runes, r)
+    先检测slice底层数组是否有足够的容量来保存新添加的元素
+    append需要用一个新的slice接收
+    append案例：实现append函数，如果cap还有 共享底层数组，如果没有空间 make创建一个新的空间 把旧的拷贝过去 然后添加y元素
+copy拷贝函数：copy(z, x)  dst = src  两个slice可以共享同一个底层数组
