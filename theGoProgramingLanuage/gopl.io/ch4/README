@@ -33,4 +33,153 @@ append追加元素：runes = append(runes, r)
     先检测slice底层数组是否有足够的容量来保存新添加的元素
     append需要用一个新的slice接收
     append案例：实现append函数，如果cap还有 共享底层数组，如果没有空间 make创建一个新的空间 把旧的拷贝过去 然后添加y元素
+    容量每次扩大为原来的2倍，直到增大到xxxx
+    x = append(x, 4, 5, 6)追加多个元素
+    x = append(x, x...)追加一个slice“...”省略号表示接收变长的参数为slice
 copy拷贝函数：copy(z, x)  dst = src  两个slice可以共享同一个底层数组
+nonempty案例：传入string slice 解析遇到“”返回从0到i，输入和输出共用一个底层数组
+模拟stack:
+    压栈 stack = append(stack, v)
+    出栈 stack = stack[:len(stack)-1]
+    移除中间元素
+        保持原有顺序copy(slice[i:], slice[i+1:])，返回slice[:len(slice)-1]
+        不用考虑位置：直接用最后一个元素赋值到指定位置
+
+3.Map 一个哈希表的引用,key必须是支持==比较运算符 测试key是否相等来判断是否已经存在,可能出现NaN和任何浮点数都不相等
+ages := make(map[string]int)
+ages := map[string]int{
+    "alice": 31,
+    "charlie": 34,
+}
+ages := make(map[string]int)
+ages["alice"] = 31
+ages["charlie"] = 34
+map[string]int{}  创建空的map的
+查找失败将返回value类型对应的零值
+    确认是0还是零值
+    age, ok := ages["bob"] 如果不存在ok为false
+    if !ok { /* 不存在执行这段代码 */ }
+    if age, ok := ages["bob"]; !ok { /* ... */ }
+map类型的零值是nil  map == nil
+    查找、删除、len和range循环都可以安全工作在nil值的map上
+    向一个nil值的map存入元素将导致一个panic异常
+不能对map的元素进行取址操作
+遍历：
+    for key, value := range map { 迭代顺序是不确定
+    for key := range map
+    排序输出：把key放到slice,sort.Strings(slice),循环slice 输出map[key]
+names := make([]string, 0, len(ages)) 提前指定大小
+map之间也不能进行相等比较
+    和nil进行比较
+    循环比较：1.先比比长度；2.循环一个map 判断是否在另一个中存在 if yv, ok := y[k]; !ok || yv != xv 不存在或者是存在但是value不一致，不能简单的xv != y[k]
+map实现set:定义map[string]bool
+    go中没有set,用go的key不重复实现
+    deup案例：输入多行，只打印第一次出现：定义一个map[string]bool 零值为false ,if !map[key] 如果不存在就放入
+map的key是slice类型或者其他不可比较类型：
+    借助fmt.Sprintf("%q", list) 把slice转化为string  或者其他可比较类型
+    func k(list []string) string { return fmt.Sprintf("%q", list) }
+charcount案例统计：每个Unicode码点出现过的次数 和 每种字节长度出现的次数：
+    utf8.UTFMax 最大是4个字节
+    输入bufio.NewReader(os.Stdin)；
+    循环输入使用rune编码
+        r, n, err := in.ReadRune() 返回三个值 字节 字节大小 错误;
+        三种情况结束循环
+        err == io.EOF 输入了结束
+        err != nil读取到nil
+        r == unicode.ReplacementChar && n == 1 无效字符异常编码并且编码长度是1 continue继续
+map的value为map或slice 聚合类型
+    var graph = make(map[string]map[string]bool)
+
+4.struct
+结构体成员名字是以大写字母开头的,那么该成员就是导出的
+交换成员先后顺序,就是不同的结构体类型
+一个聚合的值不能包含它自身：S结构体不能包含S结构体
+S类型的结构体可以包含*S指针类型的成员（创建递归的数据结构：链表和数结构）
+结构体类型的零值是每个成员都是零值
+struct{}。它的大小为0
+构体成员Tag。一个构体成员Tag是在编译阶段关联到该成员的元信息字符串
+type Employee struct {
+    ID int
+    Name string
+    Name, Address string
+    DoB time.Time
+    Employee *Employee
+    Year int `json:"released"`
+    Color bool `json:"color,omitempty"`
+}
+var dilbert Employee
+操作符访问赋值dilbert.Salary -= 5000
+对成员取地址position := &dilbert.Position
+通过指针访问：*position = "Senior " + *position
+结构体指针：
+    var employeeOfTheMonth *Employee = &dilbert
+    employeeOfTheMonth.Position += " (proactive team player)"
+    等价于：(*employeeOfTheMonth).Position += " (proactive team player)"
+函数返回结构体指针：
+    func EmployeeByID(id int) *Employee { /* ... */ }
+    可以对返回的结果进行访问、赋值等操作
+函数参数为结构体指针：
+    较大的结构体通常会用指针的方式传入和返回
+treesort案例：使用一个二叉树来实现一个插入排序
+结构体赋值：
+    p := Point{1, 2} 直接按顺序赋值
+    p := gif.GIF{LoopCount: nframes} 成员：值,gif是包名
+返回类型为结构体
+    func Scale(p Point, factor int) Point
+因为在Go语言中,所有的函数参数都是值拷贝传入的,函数参数将不再是函数调用时的原始变量
+pp := &Point{1, 2}  创建并初始化一个结构体变量
+    pp := new(Point)
+    *pp = Point{1, 2}
+如果结构体的成员都可以比比较
+结构体嵌套&匿名成员&嵌套结构体赋值
+    把相同的属性抽取出来，作为新结构体成员的类型
+    正常写法是：  【 变量名 结构体类型 】，go语言特性 引用的结构体不用写变量名
+        type Wheel struct {
+            Circle
+            Spokes int
+        } 限制：不能包含同类型的匿名成员
+    这样可以直接通过 【结构体变量.匿名对象的对象 】 直接访问叶子属性而不需要给出完整的路径
+        w.Circle.Point.X = 8 这种写法也生效
+    结构体字面值必须遵循形状类型声明时的结构，只能以下方式：
+        w = Wheel{Circle{Point{8, 8}, 5}, 20}
+        w = Wheel{
+            Circle: Circle{
+            Point:
+            Point{X: 8, Y: 8},
+            Radius: 5,
+        },
+            Spokes: 20,
+        }
+    类型成员如果也要被包外成员访问，也需要大写开头
+
+5.JSON
+encoding/json包提供支持，其他xml asn1也有支持
+数据类型有：
+    数字(十进制或科学记数法)
+    布尔值(true或false)
+    字符串 双引号包含的Unicode字符序列 支持和Go语言类似的反斜杠转义特性
+        JSON使用的是\Uhhhh转义数字来表示一个UTF-16编码，而不是Go语言的rune类型
+        "She said \"Hello, BF\""
+    JSON数组
+        ["gold", "silver", "bronze"]
+    对象类型
+        {"year": 1980,
+        "event": "archery",
+        "medals": ["gold", "silver", "bronze"]}
+结构体和JSON互相转化：
+    Year int `json:"released"` 结构体成员变量tag是json开头键名对应的值用于控制encoding/json包的编码和解码的行为
+    Color bool `json:"color,omitempty"` omitempty选项结构体成员为空或零值时不生成JSON对象
+    结构体slice转为JSON过程叫编组 marshaling
+    data, err := json.Marshal(movies)
+    json.MarshalIndent(movies, "", "    ")函数将产生整齐缩进的输出
+    Go语言结构体的成员名字作为JSON的对象(通过reflect反射技术)
+
+    解码 unmarshaling 将JSON数据解码为Go语言的数据结构
+        Go语言结构体成员Tag来指定对应的JSON名字
+    定义合适的Go语言数据结构,我们可以选择性地解码JSON中感兴趣的成员
+    json.Unmarshal(data, &titles) 其中&title是结构体地址
+github案例：每个话题的访问数量
+    定义了用户、话题、话题访问统计结构
+    url.QueryEscape 对url中的特殊字符转义
+    请求url，解析返回的body
+        err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
