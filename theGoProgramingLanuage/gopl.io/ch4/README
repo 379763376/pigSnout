@@ -183,3 +183,7 @@ github案例：每个话题的访问数量
     url.QueryEscape 对url中的特殊字符转义
     请求url，解析返回的body
         err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+        解码器json.Decoder 基于流式的解码器json.Decoder,它可以从一个输入流解码JSON数据
+        还有一个针对输出流的json.Encoder编码对象
+    格式化结构 以一个固定宽度打印每个issue
+        fmt.Printf("#%-5d %9.9s %.55s\n", item.Number, item.User.Login, item.Title)
