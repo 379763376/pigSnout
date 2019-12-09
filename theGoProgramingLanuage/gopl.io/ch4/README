@@ -187,3 +187,7 @@ github案例：每个话题的访问数量
         还有一个针对输出流的json.Encoder编码对象
     格式化结构 以一个固定宽度打印每个issue
         fmt.Printf("#%-5d %9.9s %.55s\n", item.Number, item.User.Login, item.Title)
+
+6.文本和html模板
+text/template和html/template 将变量值填充到一个文本或HTM
+使用{{action}} 实现 选择结构体的成员、 调用函数或方法、 表达式控制流if-else语句和range循环语句

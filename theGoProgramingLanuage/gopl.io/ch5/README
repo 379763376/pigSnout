@@ -1,0 +1,21 @@
+1.函数声明
+func hypot(x, y float64) float64 {
+func f(i, j, k int, s, t string){
+func first(x int, _ int) int {
+func sub(x, y int) (z int){
+2.递归
+非标准包 golang.org/x/. 扩展包
+3.多返回值：
+func findLinks(url string) ([]string, error)
+4.错误
+错误处理策略
+value, ok := cache.Lookup(key)
+if !ok {
+文件结尾错误（EOF)
+5.函数返回值
+6.匿名函数
+7.变参函数
+8.deferred
+9.panic
+10.recover
+
