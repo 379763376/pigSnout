@@ -5,10 +5,9 @@ package treesort_test
 
 import (
 	"math/rand"
+	"pigSnout/theGoProgramingLanuage/gopl.io/ch4/treesort"
 	"sort"
 	"testing"
-
-	"gopl.io/ch4/treesort"
 )
 
 func TestSort(t *testing.T) {
