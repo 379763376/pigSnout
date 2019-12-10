@@ -1,4 +1,4 @@
-1.helloworld
+1.helloworld案例：
 go run
 go build
 ./二进制文件
@@ -6,13 +6,15 @@ go get gopl.io/ch1/helloworld获取代码
 gofmt
 goimports
 
-2.echo1 获取命令行参数
+2.echo1案例：
+获取命令行参数
 os.Args 参数从1开始
 for initialization; condition; post{}
 for _, arg := range os.Args[1:]
 strings.Join(os.Args[1:], " ")
 
-3.dup 查找重复行
+3.dup案例：
+查找重复行
 3.1.读取输入，行内容为key，遇到重复++
 make(map[string]int)
 bufio.NewScanner(os.Stdin)
@@ -27,14 +29,17 @@ data, err := ioutil.ReadFile(filename)
 continue
 for _, line := range strings.Split(string(data), "\n")
 
-4.lissajous gif动画
+4.lissajous案例：
+gif动画
 
-5.fetch 获取url
+5.fetch案例：
+获取url
 resp, err := http.Get(url)
 b, err := ioutil.ReadAll(resp.Body)
 resp.Body.Close()
 
-6.fetchall 并发获取多个url
+6.fetchall案例：
+并发获取多个url
 定义一个chan,调用并发执行方法，接收管道返回数据
 ch := make(chan string)
 for _, url := range os.Args[1:] 发送

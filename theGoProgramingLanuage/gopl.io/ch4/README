@@ -191,3 +191,4 @@ github案例：每个话题的访问数量
 6.文本和html模板
 text/template和html/template 将变量值填充到一个文本或HTM
 使用{{action}} 实现 选择结构体的成员、 调用函数或方法、 表达式控制流if-else语句和range循环语句
+issuesreport案例：
