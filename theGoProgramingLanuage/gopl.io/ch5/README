@@ -33,12 +33,19 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     err中有报错原因：直接返回 if err != nil { return nil, err }
     err中没有具体说明是哪个导致：自定义返回内容和数据 return nil, fmt.Errorf("parsing %s as HTML: %v", url,err)
     偶然发生的错误，不可预知的问题导致，明智的选择是重新尝试失败的操作：限制重试的时间间隔或重试的次数，仍然报错就结束函数，向上传播错误
-        wait案例：main函数调用函数，如果错误不为空，结束执行 打印错误
-    log中的所有函数,都默认会在错误信息之前输出时间信息
+        wait案例：main函数调用函数，如果错误不为空，结束执行 打印错误 os.Exit(1)
+        log中的所有函数,都默认会在错误信息之前输出时间信息
         log.Fatalf("Site is down: %v\n", err)
         log.SetPrefix("wait: ") 设置前缀
         log.SetFlags(0)
-文件结尾错误（EOF)
+    只需要输出错误信息，不需要中断程序：
+        log.Printf("ping failed: %v; networking disabled",err)
+        fmt.Fprintf(os.Stderr, "ping failed: %v; networking disabled\n", err)
+    直接忽略错误 return fmt.Errorf("failed to create temp dir: %v",err)
+        dir, err := ioutil.TempDir("", "scratch") 创建临时目录
+        os.RemoveAll(dir) 清楚临时目录 不做错误处理 即便没有删除 操作系统会定期的清理临时目录
+文件结尾错误（EOF)：
+
 5.函数返回值
 6.匿名函数
 7.变参函数
