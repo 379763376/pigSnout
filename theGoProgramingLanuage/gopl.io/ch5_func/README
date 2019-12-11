@@ -34,8 +34,10 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     err中没有具体说明是哪个导致：自定义返回内容和数据 return nil, fmt.Errorf("parsing %s as HTML: %v", url,err)
     偶然发生的错误，不可预知的问题导致，明智的选择是重新尝试失败的操作：限制重试的时间间隔或重试的次数，仍然报错就结束函数，向上传播错误
         wait案例：main函数调用函数，如果错误不为空，结束执行 打印错误
-
-
+    log中的所有函数,都默认会在错误信息之前输出时间信息
+        log.Fatalf("Site is down: %v\n", err)
+        log.SetPrefix("wait: ") 设置前缀
+        log.SetFlags(0)
 文件结尾错误（EOF)
 5.函数返回值
 6.匿名函数
