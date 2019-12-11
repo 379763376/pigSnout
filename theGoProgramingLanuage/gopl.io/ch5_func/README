@@ -10,7 +10,8 @@ findlinks1案例：
     html.Parse解析传入文本
     visit 返回链接href的slice
         递归visit 每层上第一个节点和它的兄弟节点 如果该层是a返回href
-
+outline案例：
+    循环遍历子节点和子节点的兄弟节点
 
 3.多返回值：
 func findLinks(url string) ([]string, error)
@@ -28,7 +29,12 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     cache.Lookup是key不存在失败的唯一原因
     value, ok := cache.Lookup(key)
     if !ok {
-错误处理策略
+4.1.错误处理策略
+    err中有报错原因：直接返回 if err != nil { return nil, err }
+    err中没有具体说明是哪个导致：自定义返回内容和数据 return nil, fmt.Errorf("parsing %s as HTML: %v", url,err)
+    偶然发生的错误，不可预知的问题导致，明智的选择是重新尝试失败的操作：限制重试的时间间隔或重试的次数，仍然报错就结束函数，向上传播错误
+        wait案例：main函数调用函数，如果错误不为空，结束执行 打印错误
+
 
 文件结尾错误（EOF)
 5.函数返回值

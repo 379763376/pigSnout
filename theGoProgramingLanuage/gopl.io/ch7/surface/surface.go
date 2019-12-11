@@ -19,7 +19,7 @@ import "gopl.io/ch7/eval"
 
 //!-parseAndCheck
 
-// -- copied from gopl.io/ch3/surface --
+// -- copied from gopl.io/ch3_basic_data_type/surface --
 
 const (
 	width, height = 600, 320            // canvas size in pixels

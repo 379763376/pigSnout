@@ -1,23 +1,10 @@
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
 // License: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-// See page 144.
+// See page 153.
 
-// Title1 prints the title of an HTML document specified by a URL.
+// Title3 prints the title of an HTML document specified by a URL.
 package main
-
-/*
-//!+output
-$ go build gopl.io/ch5/title1
-$ ./title1 http://gopl.io
-The Go Programming Language
-$ ./title1 https://golang.org/doc/effective_go.html
-Effective Go - The Go Programming Language
-$ ./title1 https://golang.org/doc/gopher/frontpage.png
-title: https://golang.org/doc/gopher/frontpage.png
-    has type image/png, not text/html
-//!-output
-*/
 
 import (
 	"fmt"
@@ -28,7 +15,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-// Copied from gopl.io/ch5/outline2.
+// Copied from gopl.io/ch5_func/outline2.
 func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	if pre != nil {
 		pre(n)
@@ -42,6 +29,41 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 }
 
 //!+
+// soleTitle returns the text of the first non-empty title element
+// in doc, and an error if there was not exactly one.
+func soleTitle(doc *html.Node) (title string, err error) {
+	type bailout struct{}
+
+	defer func() {
+		switch p := recover(); p {
+		case nil:
+			// no panic
+		case bailout{}:
+			// "expected" panic
+			err = fmt.Errorf("multiple title elements")
+		default:
+			panic(p) // unexpected panic; carry on panicking
+		}
+	}()
+
+	// Bail out of recursion if we find more than one non-empty title.
+	forEachNode(doc, func(n *html.Node) {
+		if n.Type == html.ElementNode && n.Data == "title" &&
+			n.FirstChild != nil {
+			if title != "" {
+				panic(bailout{}) // multiple title elements
+			}
+			title = n.FirstChild.Data
+		}
+	}, nil)
+	if title == "" {
+		return "", fmt.Errorf("no title element")
+	}
+	return title, nil
+}
+
+//!-
+
 func title(url string) error {
 	resp, err := http.Get(url)
 	if err != nil {
@@ -60,18 +82,13 @@ func title(url string) error {
 	if err != nil {
 		return fmt.Errorf("parsing %s as HTML: %v", url, err)
 	}
-
-	visitNode := func(n *html.Node) {
-		if n.Type == html.ElementNode && n.Data == "title" &&
-			n.FirstChild != nil {
-			fmt.Println(n.FirstChild.Data)
-		}
+	title, err := soleTitle(doc)
+	if err != nil {
+		return err
 	}
-	forEachNode(doc, visitNode, nil)
+	fmt.Println(title)
 	return nil
 }
-
-//!-
 
 func main() {
 	for _, arg := range os.Args[1:] {

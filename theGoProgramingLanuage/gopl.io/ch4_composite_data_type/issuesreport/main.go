@@ -70,7 +70,7 @@ func noMust() {
 
 /*
 //!+output
-$ go build gopl.io/ch4/issuesreport
+$ go build gopl.io/ch4_composite_data_type/issuesreport
 $ ./issuesreport repo:golang/go is:open json decoder
 13 issues:
 ----------------------------------------

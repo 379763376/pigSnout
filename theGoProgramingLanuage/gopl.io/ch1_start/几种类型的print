@@ -8,3 +8,6 @@ Sprint 使用其操作数的默认格式并返回结果字符串
 Fprintln 使用其操作数的默认格式并向w写入数据
 Println 使用其操作数的默认格式并将其写入标准输出
 Sprintln 使用其操作数的默认格式并返回结果字符串
+
+
+fmt.Errorf函数使用fmt.Sprintf格式化错误信息并返回

@@ -1,11 +1,23 @@
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
 // License: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-// See page 145.
+// See page 144.
 
-// Title2 prints the title of an HTML document specified by a URL.
-// It uses defer to simplify closing the response body stream.
+// Title1 prints the title of an HTML document specified by a URL.
 package main
+
+/*
+//!+output
+$ go build gopl.io/ch5_func/title1
+$ ./title1 http://gopl.io
+The Go Programming Language
+$ ./title1 https://golang.org/doc/effective_go.html
+Effective Go - The Go Programming Language
+$ ./title1 https://golang.org/doc/gopher/frontpage.png
+title: https://golang.org/doc/gopher/frontpage.png
+    has type image/png, not text/html
+//!-output
+*/
 
 import (
 	"fmt"
@@ -16,7 +28,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-// Copied from gopl.io/ch5/outline2.
+// Copied from gopl.io/ch5_func/outline2.
 func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	if pre != nil {
 		pre(n)
@@ -35,20 +47,20 @@ func title(url string) error {
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
 
+	// Check Content-Type is HTML (e.g., "text/html; charset=utf-8").
 	ct := resp.Header.Get("Content-Type")
 	if ct != "text/html" && !strings.HasPrefix(ct, "text/html;") {
+		resp.Body.Close()
 		return fmt.Errorf("%s has type %s, not text/html", url, ct)
 	}
 
 	doc, err := html.Parse(resp.Body)
+	resp.Body.Close()
 	if err != nil {
 		return fmt.Errorf("parsing %s as HTML: %v", url, err)
 	}
 
-	// ...print doc's title element...
-	//!-
 	visitNode := func(n *html.Node) {
 		if n.Type == html.ElementNode && n.Data == "title" &&
 			n.FirstChild != nil {
@@ -56,8 +68,6 @@ func title(url string) error {
 		}
 	}
 	forEachNode(doc, visitNode, nil)
-	//!+
-
 	return nil
 }
 

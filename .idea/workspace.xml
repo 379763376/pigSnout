@@ -3,32 +3,79 @@
   <component name="ChangeListManager">
     <list default="true" id="93047008-aae6-4b90-bb3c-0137b8ffe837" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch10/jpeg/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch10/jpeg/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/echo/echo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/echo/echo_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/word1/word_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/word1/word_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/display/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/display/display.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/search/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/search/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/sexpr/sexpr_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/sexpr/sexpr_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch13/bzip-print/bzip2.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch13/bzip-print/bzip2.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch2/popcount/popcount_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch2/popcount/popcount_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch3/comma/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch3/comma/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issues/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issues/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issuesreport/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issuesreport/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer1/defer.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer1/defer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer2/defer.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer2/defer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/links/links.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/links/links.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title1/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title1/title.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title2/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title2/title.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title3/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title3/title.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/trace/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/trace/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch7/surface/surface.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch7/surface/surface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/cake/cake.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/cake/cake.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/crawl1/findlinks.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/crawl1/findlinks.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/thumbnail_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/thumbnail_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memo1/memo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memo1/memo_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memotest/memotest.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memotest/memotest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/README" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/dup1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/dup1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/dup2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/dup2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/dup3/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/dup3/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/echo1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/echo1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/echo2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/echo2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/echo3/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/echo3/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/fetch/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/fetch/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/fetchall/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/fetchall/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/helloworld/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/helloworld/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/lissajous/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/lissajous/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/server1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/server1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/server2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/server2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/server3/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/server3/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/几种类型的print" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/几种类型的print" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/转移字符" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1_start/转移字符" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch10/jpeg/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch10/jpeg/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/README" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/boiling/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/boiling/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/cf/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/cf/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/echo4/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/echo4/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/ftoc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/ftoc/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/popcount/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/popcount/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/popcount/popcount_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/popcount/popcount_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/tempconv/conv.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/tempconv/conv.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/tempconv/tempconv.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/tempconv/tempconv.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/tempconv0/celsius.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/tempconv0/celsius.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2/tempconv0/tempconv_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch2_program_struct/tempconv0/tempconv_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/README" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/basename1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/basename1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/basename2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/basename2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/comma/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/comma/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/mandelbrot/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/mandelbrot/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/netflag/netflag.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/netflag/netflag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/printints/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/printints/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3/surface/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch3_basic_data_type/surface/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/README" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/append/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/append/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/autoescape/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/autoescape/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/charcount/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/charcount/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/dedup/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/dedup/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/embed/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/embed/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/github/github.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/github/github.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/github/search.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/github/search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/graph/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/graph/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/issues/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/issues/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/issueshtml/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/issueshtml/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/issuesreport/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/issuesreport/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/movie/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/movie/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/nonempty/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/nonempty/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/rev/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/rev/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/sha256/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/sha256/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/treesort/sort.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/treesort/sort.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4/treesort/sort_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch4_composite_data_type/treesort/sort_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/README" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/defer1/defer.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/defer1/defer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/defer2/defer.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/defer2/defer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/fetch/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/fetch/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/findlinks1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/findlinks1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/findlinks2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/findlinks2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/findlinks3/findlinks.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/findlinks3/findlinks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/links/links.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/links/links.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/outline/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/outline/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/outline2/outline.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/outline2/outline.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/squares/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/squares/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/sum/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/sum/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/title1/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/title1/title.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/title2/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/title2/title.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/title3/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/title3/title.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/toposort/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/toposort/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/trace/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/trace/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/wait/wait.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5_func/wait/wait.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch7/surface/surface.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch7/surface/surface.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,10 +254,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="398" y="24" key="#go_build_sort.go/0.0.1366.728@0.0.1366.728" timestamp="1575977769104" />
-    <state x="369" y="0" width="998" height="863" key="CommitChangelistDialog2" timestamp="1576052329721">
+    <state x="369" y="0" width="998" height="863" key="CommitChangelistDialog2" timestamp="1576052514708">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="369" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1576052329721" />
+    <state x="369" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1576052514708" />
     <state x="567" y="125" width="998" height="863" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1575907390300" />
     <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1575980224162">
       <screen x="0" y="0" width="1366" height="728" />
@@ -236,10 +283,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="372" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1576052350127" />
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1576050925647">
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1576052542554">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1576050925647" />
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1576052542554" />
     <state x="986" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575472980257">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -248,10 +295,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="1196" y="77" width="696" height="921" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1575643012907" />
-    <state x="840" y="159" width="672" height="469" key="search.everywhere.popup" timestamp="1576046753722">
+    <state x="840" y="159" width="672" height="469" key="search.everywhere.popup" timestamp="1576060278249">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="840" y="159" width="672" height="469" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1576046753722" />
+    <state x="840" y="159" width="672" height="469" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1576060278249" />
     <state x="1207" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1575640362998" />
   </component>
 </project>
