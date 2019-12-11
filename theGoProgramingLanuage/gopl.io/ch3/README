@@ -1,0 +1,230 @@
+1.整型
+int8、int16、int32和int64
+uint8、uint16、uint32和uint64
+int和uint 特定CPU平台机器字大小bit
+Unicode字符rune类型是和int32等价的类型
+byte也是uint8类型的等价类型  1byte=8bit
+byte类型一般用于强调数值是一个原始的数据而不是一个小的整数
+无符号的整数类型uintptr，没有指定具体的bit大小但是足以容纳指针
+−2^(n−1) 到2^(n−1) − 1
+0到2^n − 1
+int8类型整数的值域是从-128到127
+术运算、逻辑运算和比较运算的二元运算符,它们按照先级递减的顺序的排列:
+    * / % << >> & &^
+    + - | ^
+    == != < <= > >=
+    &&
+    ||
+使用括号也可以用于提升优先级
+取模运算符%仅用于整数间的运算
+-5%3 和 -5%-3 结果都是-2  %取模运算符的符号和被取模数的符号总是一致的
+除法运算符/ 行为则依赖于操作数是否为全为整数,整数除法会向着0方向截断余数
+
+== equal to
+!= not equal to
+< less than
+<= less than or equal to
+> greater than
+>= greater than or equal to
++ 一元加法 (无效果)
+- 负数
+& 位运算 AND
+| 位运算 OR
+^ 位运算 XOR
+&^ 位清空 (AND NOT)
+<< 左移
+>> 右移
+
+var u uint8 = 255
+fmt.Println(u, u+1, u*u) // "255 0 1"
+var i int8 = 127
+fmt.Println(i, i+1, i*i) // "127 -128 1"
+
+fmt.Printf("%08b\n", x) %08b中08表示打印至少8个字符宽度
+
+一个x<<n左移运算等价于乘以2^n ,一个x>>n右移运算等价于除以2^n
+左移运算用零填充右边空缺的bit位
+无符号数的右移运算也是用0填充左边空缺的bit位
+有符号数的右移运算会用符号位的值填充左边空缺的bit位
+用无符号运算,可以将整数完全当作一个bit位模式处理
+
+我们还是倾向于使用有符号的int类型
+for i := len(medals) - 1; i >= 0; i-- { 如果无符号整数就会i>=0 永远为真
+
+不同精度之间转换需要显示类型转换
+浮点数转整数，向数轴零方向截断
+
+ascii 转十进制
+unicode 转十进制
+ascii := 'a'
+unicode := '国'
+newline := '\n'
+fmt.Printf("%d %[1]c %[1]q\n", ascii)// "97 a 'a'"
+fmt.Printf("%d %[1]c %[1]q\n", unicode) // "22269 国 '国'"
+fmt.Printf("%d %[1]q\n", newline)// "10 '\n'"
+
+2.浮点
+常量math.MaxFloat32
+常量math.MaxFloat64
+float32的有效bit位只有23个,其它的bit位用于指数和符号;当整数大于23bit能表达的范围时,float32的表示将出现误差
+非数NaN无效的除法操作结果0/0或Sqrt(-1)
+NaN和任何数都是不相等的
++Inf -Inf 正无穷大和负无穷大
+
+判断一个数是否非数：math.IsNaN
+测试一个结果是否是非数NaN则是充满风险的，NaN和任何数都是不相等的
+nan := math.NaN()
+fmt.Println(nan == nan, nan < nan, nan > nan) // "false false false"
+
+3.复数
+complex64和complex128
+float32和float64两种浮点数精度
+var x complex128 = complex(1, 2) // 1+2i
+var y complex128 = complex(3, 4) // 3+4i
+fmt.Println(x*y) // "(-5+10i)"
+fmt.Println(real(x*y)) // "-5"
+fmt.Println(imag(x*y)) // "10"
+x := 1 + 2i
+y := 3 + 4i
+
+4.布尔型
+true和false
+如果运算符左边值已经可以确定整个布尔表达式的值,那么运算符右边的值将不在被求值
+
+if 'a' <= c && c <= 'z' ||
+  'A' <= c && c <= 'Z' ||
+  '0' <= c && c <= '9' {  &&的优先级比||高
+// ...ASCII letter or digit...
+}
+
+s != "" && s[0] == 'x'  s[0]操作如果应用于空字符串将会导致panic异常。
+
+布尔和整形10不能转换
+
+5.字符串
+len(s)长度 字节数目(不是rune字符数目)
+s[0]索引，超出panic 范围：0 ≤ i< len(s)
++ 两个字符串链接
+== < 逐个字节比较
+不可修改 -> 两个字符串共享相同的底层数据的话也是安全的
+5.1.字符串面值
+一个字节是8位，所以最大数是255，对应的八进制377
+\ooo 一个字节的八进制
+\xhh 一个字节的十六进制
+ASCII 一个字节,用7bit表示 可以表示128个字符
+UTF8 两个多多个字节
+` ` 用反引号表示原生字符串面值，对于字符串内的数据都不做替换
+Unicode 收录了所有的字符，每个字符一个Uicode码点，对应go中的rune整数类型，编码方式UTF-32
+5.2.&& 5.3.
+UTF8 将Unicode码点编码为字节序列的变长编码，1到4个字节表示每个unicode
+UTF8 表示规则最高为是0、110、1110、11110
+小于256的码点 两个字节 写在一个十六进制转移字节中
+"世界"
+"\xe4\xb8\x96\xe7\x95\x8c" 八进制编码
+"\u4e16\u754c"  十六进制编码
+"\U00004e16\U0000754c" 三十二进制编码
+不用解码，直接比较测试一个字符串是否是另一个的前缀、后缀、包含
+前缀、会缀：比较长度 && 原字符串切片等于前缀
+包含：循环 截取原始字符串 看是否是前缀
+unicode/utf8 包的使用：
+    utf8.RuneCountInString(s) 统计rune编码后的长度
+    utf8.DecodeRuneInString(s[i:]) 解码 返回该字符和字符所占字节数
+使用for i:= 0;i<len(s);{ r,size := utf8.DecodeRuneInString(s[i:]) } 可以实现解码
+for i, r := range "Hello, 世界" { Go语言的range循环在处理字符串的时候,会自动隐式解码UTF8字符串
+for _, _ = range s { n++ 统计字符数目
+for range s { n++ 省略不需的变量
+"�" Unicode字符'\uFFFD' 一个错误的UTF8编码输入
+rune序列可能更方便,因为rune大小一致,支持数组索引和方便切割
+
+r := []rune(s)
+fmt.Println(string(r))  将一个[]rune类型的Unicode字符slice或数组转为string,则对它们进行UTF8编码
+5.4&&5.5. 字符串、切片、数字
+bytes、strings、strconv和unicode包
+strings :字符串的查询、替换、比较、截断、拆分和合并等功能、ToUpper和ToLower
+    strings.LastIndex
+    func Contains(s, substr string) bool
+    func Count(s, sep string) int
+    func Fields(s string) []string
+    func HasPrefix(s, prefix string) bool
+    func Index(s, sep string) int
+    func Join(a []string, sep string) string
+bytes：[]byte的操作
+    bytes.Buffer
+        用于字节slice的缓存 随着string、byte或[]byte等类型数据的写入可以动态增长
+        buf.WriteByte('[') 写入ascii
+        buf.WriteString(", ")
+        fmt.Fprintf(&buf, "%d", v) 写入数据
+        WriteRune 写入中文
+    func Contains(b, subslice []byte) bool
+    func Count(s, sep []byte) int
+    func Fields(s []byte) [][]byte
+    func HasPrefix(s, prefix []byte) bool
+    func Index(s, sep []byte) int
+    func Join(s [][]byte, sep []byte) []byte
+    bytes.Buffer类型,结构体初始值就是一个随时可用的空缓存
+strconv：包提供了布尔型、整型数、浮点数和对应字符串的相互转换,还提供了双引号转义相关的转换
+    fmt.Sprintf("%d", x)  fmt.Sprintf("x=%b", x) 数字和字符串转换，并可以附加额外信息
+    strconv.Itoa(x) 整数到ASCII
+    strconv.FormatInt(int64(x), 2) 进制来格式化数字 FormatInt和FormatUint
+    x, err := strconv.Atoi("123") 字符串转int
+    y, err := strconv.ParseInt("123", 10, 64) 10进制, 64位
+    fmt.Scanf 解析输入的字符串和数字
+unicode：IsDigit、IsLetter、IsUpper和IsLower、ToUpper和ToLower
+comma案例12345->12,345：使用递归 拿出最后三个中间加分割符号，在把前面的字符串传入函数，不断递归 直到if结束
+字符串和字节slice之间的转换
+printints案例使用
+
+6.常量
+const pi = 3.14159
+const (
+ e = 2.763
+ pi = 3.149
+)
+time.Duration是一个命名类型,底层类型是int64
+time.Minute
+const (
+    a = 1
+    b
+    c = 2
+    d
+) 值是"1 1 2 2"
+iota 常量生成器 以相似规则初始化的常量
+const ( 只用第一行写，之后都会加1
+    Sunday Weekday = iota  声明的常量所在的行,iota将会被置为0
+    Monday
+    Tuesday
+    Wednesday
+    Thursday
+    Friday
+    Saturday
+)
+const ( 每行都在上一行的数值基础上左移一位 测试、设置或清除对应的bit位的值
+    FlagUp Flags = 1 << iota // is up
+    FlagBroadcast // supports broadcast access capability
+    FlagLoopback // is a loopback interface
+    FlagPointToPoint // belongs to a point-to-point link
+    FlagMulticast // supports multicast access capability
+)
+const (每个常量都是1024的幂
+    _ = 1 << (10 * iota)
+    KiB // 1024
+    MiB // 1048576
+    GiB // 1073741824
+    TiB // 1099511627776
+    (exceeds 1 << 32)
+    PiB // 1125899906842624
+    EiB // 1152921504606846976
+    ZiB // 1180591620717411303424
+    (exceeds 1 << 64)
+    YiB // 1208925819614629174706176
+)
+Go语言并没有计算幂的运算符 不能用于产生1000的幂
+6.2.无类型常量：
+编译器为这些没有明确的基础类型的数字常量提供比基础类型更高精度的算术运算
+可以认为至少有256bit的运算精度
+math.Pi 无类型的浮点数常量,直接用于任意需要浮点数或复数的地方 var x float32 = math.Pi
+
+无类型的布尔型、无类型的整数、无类型的字符、无类型的浮点数、无类型的复数、无类型的字符串
+如果变量有明确定义值类型，则给变量赋值时会隐式转换为对应的类型
+短变量声明语法默认类型：int float64  complex128
+当无类型常量转为接口值时 默认类型 明确接口对应的动态类型

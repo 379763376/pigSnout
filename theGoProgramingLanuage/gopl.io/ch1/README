@@ -1,0 +1,80 @@
+1.helloworld案例：
+go run
+go build
+./二进制文件
+go get gopl.io/ch1/helloworld获取代码
+gofmt
+goimports
+
+2.echo1案例：
+获取命令行参数
+os.Args 参数从1开始
+for initialization; condition; post{}
+for _, arg := range os.Args[1:]
+strings.Join(os.Args[1:], " ")
+
+3.dup案例：
+查找重复行
+3.1.读取输入，行内容为key，遇到重复++
+make(map[string]int)
+bufio.NewScanner(os.Stdin)
+3.2.读取文件作为输入，循环输入变量，打开读取文件作为函数输入
+f, err := os.Open(arg) 读取被打开的文件，返回两个值
+f.Close()
+fmt.Fprintf(os.Stderr, "dup2: %v\n", err) 标准错误输出到writes，Printf写出到标准输出
+bufio.NewScanner(f) 文件作为输入
+func countLines(f *os.File, counts map[string]int)接收文件作为输入
+3.3.一次性读取到内存再操作：文件都打开放入map再执行打印
+data, err := ioutil.ReadFile(filename)
+continue
+for _, line := range strings.Split(string(data), "\n")
+
+4.lissajous案例：
+gif动画
+
+5.fetch案例：
+获取url
+resp, err := http.Get(url)
+b, err := ioutil.ReadAll(resp.Body)
+resp.Body.Close()
+
+6.fetchall案例：
+并发获取多个url
+定义一个chan,调用并发执行方法，接收管道返回数据
+ch := make(chan string)
+for _, url := range os.Args[1:] 发送
+for range os.Args[1:] 接收
+func fetch(url string, ch chan<- string)
+start := time.Now()
+ch <- fmt.Sprint(err)
+nbytes, err := io.Copy(ioutil.Discard, resp.Body)
+ch <- fmt.Sprintf("while reading %s: %v", url, err) 格式化并返回
+secs := time.Since(start).Seconds()
+ch <- fmt.Sprintf("%.2fs %7d %s", secs, nbytes, url)
+
+7.server web服务
+7.1.
+http.HandleFunc("/", handler)
+log.Fatal(http.ListenAndServe("localhost:8000", nil))
+func handler(w http.ResponseWriter, r *http.Request) 处理请求
+fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path) 标准输出
+go run src/gopl.io/ch1/server1/main.go & 后台执行
+7.2.全局计数器:
+http.HandleFunc("/count", counter)
+mu.Lock()
+fmt.Fprintf(w, "Count %d\n", count)
+mu.Unlock()
+7.3.
+fmt.Fprintf(w, "%s %s %s\n", r.Method, r.URL, r.Proto)
+for k, v := range r.Header
+r.Host
+r.RemoteAddr
+if err := r.ParseForm(); err != nil
+for k, v := range r.Form
+
+以上程序的不同的类型，最后都输出到标准输出流中
+不同的输出类型，但是都实现了io.Writer接口
+改造把gif输出到web
+handler := func(w http.ResponseWriter, r *http.Request)
+lissajous(w)
+http.HandleFunc("/", handler)
