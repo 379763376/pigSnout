@@ -3,6 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="93047008-aae6-4b90-bb3c-0137b8ffe837" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch10/jpeg/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch10/jpeg/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/echo/echo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/echo/echo_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/word1/word_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch11/word1/word_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/display/display.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/display/display.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/search/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/search/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/sexpr/sexpr_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch12/sexpr/sexpr_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch13/bzip-print/bzip2.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch13/bzip-print/bzip2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch2/popcount/popcount_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch2/popcount/popcount_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch3/comma/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch3/comma/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issues/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issues/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issuesreport/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch4/issuesreport/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer1/defer.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer1/defer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer2/defer.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/defer2/defer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/links/links.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/links/links.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title1/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title1/title.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title2/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title2/title.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title3/title.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/title3/title.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/trace/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch5/trace/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch7/surface/surface.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch7/surface/surface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/cake/cake.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/cake/cake.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/crawl1/findlinks.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/crawl1/findlinks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/thumbnail_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch8/thumbnail/thumbnail_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memo1/memo_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memo1/memo_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memotest/memotest.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/goplio/ch9/memotest/memotest.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +194,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="550" y="25" key="#GOROOT/0.0.1366.728@0.0.1366.728" timestamp="1575941390308" />
+    <state x="550" y="27" key="#Notifications" timestamp="1576052099642">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="550" y="27" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1576052099642" />
     <state x="712" y="172" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575887805320">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -176,10 +206,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="398" y="24" key="#go_build_sort.go/0.0.1366.728@0.0.1366.728" timestamp="1575977769104" />
-    <state x="369" y="0" width="998" height="863" key="CommitChangelistDialog2" timestamp="1576052066933">
+    <state x="369" y="0" width="998" height="863" key="CommitChangelistDialog2" timestamp="1576052277101">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="369" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1576052066933" />
+    <state x="369" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1576052277101" />
     <state x="567" y="125" width="998" height="863" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1575907390300" />
     <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1575980224162">
       <screen x="0" y="0" width="1366" height="728" />
