@@ -18,7 +18,7 @@
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/theGoProgramingLanuage/goplio" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="GoLibraries">
@@ -176,10 +176,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="398" y="24" key="#go_build_sort.go/0.0.1366.728@0.0.1366.728" timestamp="1575977769104" />
-    <state x="369" y="68" width="998" height="863" key="CommitChangelistDialog2" timestamp="1575980246380">
+    <state x="369" y="0" width="998" height="863" key="CommitChangelistDialog2" timestamp="1576052066933">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="369" y="68" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1575980246380" />
+    <state x="369" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1576052066933" />
     <state x="567" y="125" width="998" height="863" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1575907390300" />
     <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1575980224162">
       <screen x="0" y="0" width="1366" height="728" />
@@ -205,10 +205,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="372" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1576035974875" />
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1575980254662">
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2" timestamp="1576050925647">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1575980254662" />
+    <state x="275" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1576050925647" />
     <state x="986" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575472980257">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
