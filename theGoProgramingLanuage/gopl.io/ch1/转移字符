@@ -32,3 +32,5 @@ fmt.Printf("x = %d e^x = %8.3f\n", x, math.Exp(float64(x))
     -5d左对齐
     9.9s右对齐长度为9，对齐位置可以向后延展9后
     .55s开头对其，向后55位
+
+fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)  利用*，来动态代入这两个量 depth*2 代替 *
