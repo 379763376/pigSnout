@@ -64,18 +64,76 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     func关键字后没有函数名，函数值字面量表达式 称为匿名函数
     strings.Map(func(r rune) rune { return r + 1 }, "HAL-9000")
     squares案例：
-        squares() 生成一个局部变量x 并 返回一个类型为 func() int 的函数，f接收这个匿名函数 f是函数值
+        squares函数 返回值是函数 该函数内部定义了局部变量和匿名方法，匿名方法可以访问和更新局部变量 匿名函数和squares中,存在变量引用
+        调用squares 生成一个局部变量x 并 返回一个类型为 func() int 的函数 ,f为函数值(f的类型是函数) 包含x的状态和匿名函数
         每次调用匿名函数，都会对局部变量x进行操作
         第二次调用squares时， 会生成第二个x变量，新匿名函数操作的是第二个x变量
-
+        函数值不仅仅是一串代码,还记录了状态
+        所以：函数值属于引用类型和函数值不可比较的原因
+        Go使用闭包(closures)技术实现函数值,Go程序员也把函数值叫做闭包
+        变量的生命周期不由它的作用域决定:squares返回后,变量x仍然隐式的存在于f中
+    toposort案例：拓扑排序，每门课都有几门前置课，使用深度优先搜索得到一个先后排序的有向无环图
+        测试数据类型map[string][]string
+        拿到所有key的slice （可以排序sort.Strings(keys)）
+        var visitAll func(items []string) 函数值对象 参数类型是slice
+        visitAll = func(items []string) {...} 函数值对象赋值
+            如果变量和函数值不分开声明，将无法递归调用该函数
+            循环key slice,对value进行深度遍历直到这个value作为key没有前置课程，就把这个课程放到order slice
+    links案例：
+        link, err := resp.Request.URL.Parse(a.Val) 解析获取URL
+        links中存储的不是href属性的原始值,而是通过resp.Request.URL解析后的值，可以直接被http.Get访
+        广度优先遍历图：
+            广度优先算法会为每个元素调用一次f。每次f执行完毕后,会返回一组待访问元素。这些元素会被加入到待访问列表中。当待访问列表中的所有元素都被访问后,breadthFirst函数运行结束。为了避免同一个元素被访问两次,代码中维护了一个map
+            一个算法实现中worklist的值在每次循环完就赋予新的值，外层for循环是一个死循环，内层每次都是新的items,除非没有新的url 循环就会结束
+6.1.警告:捕获迭代变量
+    循环体中声明的变量，在循环内部的匿名函数被使用
+    当删除操作执行时,for循环已完成,dir中存储的值等于最后一次迭代的值。这意味着,每次对os.RemoveAll的调用删除的都是相同的目录
+    iterationvar案例：执行匿名函数的时候for循环已经执行完了，d的值变成最后一次迭代的值
 
 7.变参函数
-8.deferred
-9.panic
+    定义： func sum(vals...int) int 在参数列表的最后一个参数类型之前加上省略符号“...”
+    传递切片类型： fmt.Println(sum(values...)) 参数已经是切片类型，在最后一个参数后加上省略符
+    传一个多或多个类型：  fmt.Println(sum(1,2))
+
+8.deferred: 处理成对的操作: 打开、关闭、连接、断开连接、加锁、释放锁
+    title1案例：
+        自定义函数返回error： func title(url string) error
+        请求URL，判断返回头是否text/html类型；解析返回的body
+    释放资源的defer应该直接跟在请求资源的语句后
+    函数或方法前加上关键字defer,defer后面的函数会被延迟执行,直到包含该defer语句的函数执行完毕时,defer后的函数才会被执行
+    多个defer执行顺序： 可以在一个函数中执行多条defer语句,它们的执行顺序与声明顺序相反（return或panic之后才会操作）
+    title2案例：
+        代替多次的close: defer resp.Body.Close()
+    ioutil ReadFile deffer对打开的文件关闭
+    互斥锁： mu.lock 后面跟defer mu.Unlock
+    trace案例：记录函数的运行时间
+        defer trace("bigSlowOperation")() 函数执行完调用trace的匿名函数
+        defer func() { fmt.Printf("double(%d) = %d\n", x,result) }() defer 可以访问函数中包括返回值变量在内的所有变量，result是函数返回值变量
+        defer func() { result += x }() 对返回值操作
+    问题：循环体一次性打开多个文件，defer f.Close，所有文件都被处理之前，没有文件会关闭
+    解决：把文件的操作抽象到一个方法中: if err := doFile(filename); err != nil
+    fetch案例:
+        if closeErr := f.Close(); err == nil 关闭文件时,我们没有对f.close采用defer机制
+        因为：
+            许多文件系统,尤其是NFS,写入文件时发生的错误会被延迟到文件关闭时反馈
+            没有检查文件关闭时的反馈信息,可能会导致数据丢失,而我们还误以为写入操作成功
+            io.Copy和f.close都失败了,我们倾向于将io.Copy的错误信息反馈给调用者,因为它先于f.close发生,更有可能接近问题的本质
+
+9.panic： 运行时错误 越界、空指针
+    panic发生，程序中断，执行defer机制，随后程序崩溃 输出日志
+    直接调用内置的panic函数也会引发panic异常，panic函数接受任何值作为参数
+    switch--default: panic(fmt.Sprintf("invalid suit %q", s)) 发生了不应该发生的事情，调用panic
+    我们应该使用Go提供的错误机制,而不是panic,尽量避免程序的崩溃: 错误的输入、错误的配置、失败的I/O 都应该被处理
+    var httpSchemeRE = regexp.MustCompile(`^https?:`)   regexp库文件,检查正则合法性 ， 函数名中的Must前缀是一种针对此类函数的命名约定
+    x+0/x 当x==0时 panic报错
+    defer1案例： panic发生 调用defer
+    defer2案例： runtime包允许程序员输出堆栈信息
+
 10.recover
-可以使用的场景须满足4条：
+    可以使用的场景须满足4条：
     deferred函数中调用了内置函数recover
     定义该defer语句的函数发生了panic异常
     recover会使程序从panic中恢复,并返回panic value
     导致panic异常的函数不会继续运行,但能正常返回
-在未发生panic时调用recover,recover会返回nil
+    在未发生panic时调用recover,recover会返回nil
+

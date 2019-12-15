@@ -2,17 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93047008-aae6-4b90-bb3c-0137b8ffe837" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/iterationvar/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/转移字符" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch1/转移字符" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/README" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/squares/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/squares/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" path="C:\Go" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -27,6 +33,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
@@ -35,9 +42,42 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
-    <property name="settings.editor.selected.configurable" value="go.sdk" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
-  <component name="RunManager" selected="Go Build.go build pigSnout/theGoProgramingLanuage/gopl.io/ch5/squares">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/iterationvar" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build defer.go">
+    <configuration name="go build defer.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="pigSnout" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/defer2/defer.go" />
+      <package value="pigSnout" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build findlinks.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="pigSnout" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="https://www.zhihu.com/signin?next=%2F" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/theGoProgramingLanuage/gopl.io/ch5/findlinks3/findlinks.go" />
+      <package value="pigSnout" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="pigSnout" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="pigSnout" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build outline.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="pigSnout" />
       <working_directory value="$PROJECT_DIR$" />
@@ -67,8 +107,19 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.go build pigSnout/theGoProgramingLanuage/gopl.io/ch5/outline" />
+      <item itemvalue="Go Build.go build findlinks.go" />
+      <item itemvalue="Go Build.go build outline.go" />
+      <item itemvalue="Go Build.go build pigSnout/theGoProgramingLanuage/gopl.io/ch5/squares" />
+      <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Go Build.go build defer.go" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build defer.go" />
+        <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build findlinks.go" />
         <item itemvalue="Go Build.go build pigSnout/theGoProgramingLanuage/gopl.io/ch5/squares" />
         <item itemvalue="Go Build.go build outline.go" />
       </list>
@@ -94,14 +145,20 @@
     <proxy>direct</proxy>
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="25" key="#GOROOT" timestamp="1576112337357">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="440" y="63" width="800" height="677" key="#GOROOT" timestamp="1576162142060">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="275" y="25" key="#GOROOT/0.0.1366.728@0.0.1366.728" timestamp="1576112337357" />
-    <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576115505482">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="440" y="63" width="800" height="677" key="#GOROOT/67.27.1853.1053@67.27.1853.1053" timestamp="1576162142060" />
+    <state x="242" y="59" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576382346283">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state x="137" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1576115505482" />
+    <state x="242" y="59" key="#com.intellij.execution.impl.EditConfigurationsDialog/55.27.1865.1053@55.27.1865.1053" timestamp="1576382346283" />
+    <state x="1120" y="155" width="658" height="744" key="#go_build_findlinks.go" timestamp="1576380519205">
+      <screen x="55" y="27" width="1865" height="1053" />
+    </state>
+    <state x="1120" y="155" width="658" height="744" key="#go_build_findlinks.go/55.27.1865.1053@55.27.1865.1053" timestamp="1576380519205" />
     <state x="398" y="45" key="#go_build_outline.go" timestamp="1576115422788">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -114,38 +171,46 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="417" y="127" key="EnvironmentVariablesDialog/0.0.1366.728@0.0.1366.728" timestamp="1576115417625" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1576112334249">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="687" y="202" width="424" height="484" key="FileChooserDialogImpl" timestamp="1576398174211">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1576112334249" />
-    <state width="703" height="162" key="GridCell.Tab.0.bottom" timestamp="1576151424615">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="687" y="202" width="424" height="484" key="FileChooserDialogImpl/55.27.1865.1053@55.27.1865.1053" timestamp="1576398174211" />
+    <state width="1811" height="305" key="GridCell.Tab.0.bottom" timestamp="1576424632079">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state width="703" height="162" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1576151424615" />
-    <state width="703" height="162" key="GridCell.Tab.0.center" timestamp="1576151424614">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1811" height="305" key="GridCell.Tab.0.bottom/55.27.1865.1053@55.27.1865.1053" timestamp="1576424632079" />
+    <state width="1811" height="305" key="GridCell.Tab.0.center" timestamp="1576424632078">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state width="703" height="162" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1576151424614" />
-    <state width="703" height="162" key="GridCell.Tab.0.left" timestamp="1576151424610">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1811" height="305" key="GridCell.Tab.0.center/55.27.1865.1053@55.27.1865.1053" timestamp="1576424632078" />
+    <state width="1811" height="305" key="GridCell.Tab.0.left" timestamp="1576424632078">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state width="703" height="162" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1576151424610" />
-    <state width="703" height="162" key="GridCell.Tab.0.right" timestamp="1576151424614">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1811" height="305" key="GridCell.Tab.0.left/55.27.1865.1053@55.27.1865.1053" timestamp="1576424632078" />
+    <state width="1811" height="305" key="GridCell.Tab.0.right" timestamp="1576424632079">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state width="703" height="162" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1576151424614" />
-    <state x="657" y="162" key="SettingsEditor" timestamp="1576080956847">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1811" height="305" key="GridCell.Tab.0.right/55.27.1865.1053@55.27.1865.1053" timestamp="1576424632079" />
+    <state x="649" y="162" key="SettingsEditor" timestamp="1576381538424">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
+    <state x="649" y="162" key="SettingsEditor/55.27.1865.1053@55.27.1865.1053" timestamp="1576381538424" />
     <state x="657" y="162" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1576080956847" />
-    <state x="695" y="150" width="626" height="480" key="find.popup" timestamp="1576115801604">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="1004" y="244" width="855" height="695" key="find.popup" timestamp="1576421808857">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state x="695" y="150" width="626" height="480" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1576115801604" />
+    <state x="1004" y="244" width="855" height="695" key="find.popup/55.27.1865.1053@55.27.1865.1053" timestamp="1576421808857" />
     <state x="1010" y="244" width="696" height="614" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1576081055421" />
-    <state x="647" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1576131671107">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="938" y="98" width="918" height="981" key="search.everywhere.popup" timestamp="1576421843131">
+      <screen x="55" y="27" width="1865" height="1053" />
     </state>
     <state x="647" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1576131671107" />
+    <state x="938" y="98" width="918" height="981" key="search.everywhere.popup/55.27.1865.1053@55.27.1865.1053" timestamp="1576421843131" />
   </component>
 </project>
