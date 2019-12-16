@@ -130,10 +130,28 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     defer2案例： runtime包允许程序员输出堆栈信息
 
 10.recover
-    可以使用的场景须满足4条：
-    deferred函数中调用了内置函数recover
-    定义该defer语句的函数发生了panic异常
-    recover会使程序从panic中恢复,并返回panic value
-    导致panic异常的函数不会继续运行,但能正常返回
-    在未发生panic时调用recover,recover会返回nil
+    使用方法：
+        deferred函数中调用了内置函数recover, 定义该defer语句的函数发生了panic异常
+        recover会使程序从panic中恢复,并返回panic value, 导致panic异常的函数不会继续运行,但能正常返回
+        在未发生panic时调用recover,recover会返回nil
+    使用场景：
+        正则表达式判断是否合法，如果错误异常 不会让解析器崩溃而是将panic当作普通的解析错误
+        deferred函数帮助从panic恢复，deferred函数内部 把panic value赋值给err变量 返回给调用者
+    不能不分场景都去恢复（数据接够更新错误、文件或网络没有被关闭、锁没有被释放 不应该恢复）
+    开发中惯例：
+        将对panic的处理集中到一个包下
+        不要恢复其他包引起的panic
+        公有api应该将失败作为error,而不是panic
+        其他函数引起的panic 比如传入的参数为函数,当调用该函数时发生的错误不应该恢复，因为无法确保安全
+    web服务，不能因为某个处理函数引发panic异常 杀掉整个进程，遇到处理函数panic 调用recover，输出堆栈信息 继续运行
+        有选择性的recover
+        预定义panic value, 如果是预定义将panic作为error，如果不是正常按照panic处理
+    tile3案例：
+        定义了一个类型作为panic类型
+        执行函数触发了panic(自定义类型)
+        deferred函数使用recover接收panic返回的错误，用switch-case做类型断言
+
+
+
+
 

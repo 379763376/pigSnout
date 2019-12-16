@@ -1,0 +1,27 @@
+1.方法声明
+    在函数方法名前放一个变量
+    将该函数附加到这种类型上， 即相当于为这种类型定义了一个独占的方法
+    定义：func (p Point) Distance(q Point) float64{}
+        附加参数p 方法的接收器(receiver)
+    调用：
+       Distance(p, q) 函数调用
+       p.Distance(q) 方法调用
+       geometry.Path.Distance(perim) 包外调用函数
+       perim.Distance() 包外调用方法
+    方法和函数可以同名
+    方法名和结构体成员名不可以同名，因为选择器p.X会有歧义
+    每种类型都有方法的命名空间,不通类型指向不通的方法
+
+2.指针对象的方法
+    定义：func (p *Point) ScaleBy(factor float64) {}
+    方法名：(*Point).ScaleBy
+    约定：
+        指针作为接收器的方法，一个类要么所有的方法都是指针，要么都不是
+        一个类型名本身是一个指针的话， 是不允许其出现在接收器中的，
+    调用：
+        (&p).ScaleBy(2) p的地址
+        pptr.ScaleBy(2) pptr是地址
+        r.ScaleBy(2) r是地址
+        p.ScaleBy(2)  编译器会隐式地帮我们用&p去调用ScaleBy这个方法
+            这种简写方法只适用于“变量”， 包括struct里的字段比如p.X， 以及array和slice内的元素比如perim[0]
+        Point{1, 2}.ScaleBy(2)  报错：不能通过一个无法取到地址的接收器来调用指针方法
