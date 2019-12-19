@@ -18,7 +18,7 @@ type Point struct{ X, Y float64 }
 
 type ColoredPoint struct {
 	Point
-	Color color.RGBA
+	Color color.RGBA //引用的结构体不用写变量名
 }
 
 //!-decl
