@@ -9,8 +9,20 @@ fmt.Printf和Sprintf
     第一个参数io.Writer是接口类型，传参对象必须有一个Write函数，证明这个对象就是接口的实现类型
     bytecounter案例：一个实现了接口方法Write的类型
     fmt.Stringer接口定义了String方法，类型实现了String方法,
+
 2.接口类型
+    单方法接口
+    组合已有接口--接口内嵌
+
 3.实现接口条件
+    定义接口对象
+    接口对象赋值  只要实现了接口的方法 就说这个类型属于这个接口
+    os.Stdout实现了Reader Writer Closer
+    接口A赋值一个大范围的接口B（B包含A）
+    类型方法的接收器是指针类型时，T类型不拥有*T指针的方法，类型对象取址赋值给接口对象
+
+
+
 4.flat.Value接口
 5.接口值
 5.1.一个包含nil指针的接口不是nil接口
