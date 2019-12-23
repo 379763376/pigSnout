@@ -1,8 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"sync"
-	"time"
 )
 
 var cache = struct {
@@ -14,10 +15,23 @@ var cache = struct {
 		"zs": "lz",
 	},
 }
+type ByteCounter int
 
+func (c *ByteCounter)Write(p []byte) (n int, err error)  {
+	*c += ByteCounter(len(p))
+	return len(p),nil
+}
+func (c *ByteCounter)String(){
+	fmt.Fprint(os.Stdout,c)
+}
+
+func toPrint(stringer *ByteCounter, s string) {
+	stringer.String()
+}
 func main() {
-	Lookup("zs")
-	time.AfterFunc(10*time.Second, func() { r.Launch() })
+	var c  ByteCounter
+	fmt.Fprintf(&c,"","")
+	toPrint(&c,"xxxx")
 }
 
 func Lookup(key string) string {

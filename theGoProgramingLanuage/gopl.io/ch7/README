@@ -1,0 +1,20 @@
+接口类型
+接口类中只定义方法 不定义怎么实现
+go中的接口是隐式实现的，方法是显示实现的
+1.接口约定
+一个接口类型，对外只展示自己的方法
+fmt.Printf和Sprintf
+    都是fmt.Fprintf来进行封装
+    函数func Fprintf(w io.Writer, format string, args ...interface{}) (int, error)
+    第一个参数io.Writer是接口类型，传参对象必须有一个Write函数，证明这个对象就是接口的实现类型
+    bytecounter案例：一个实现了接口方法Write的类型
+    fmt.Stringer接口定义了String方法，类型实现了String方法,
+2.接口类型
+3.实现接口条件
+4.flat.Value接口
+5.接口值
+5.1.一个包含nil指针的接口不是nil接口
+6.sort.Interface接口
+7.http.Handler接口
+8.error接口
+9.
