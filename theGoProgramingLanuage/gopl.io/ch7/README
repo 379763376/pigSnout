@@ -20,7 +20,10 @@ fmt.Printf和Sprintf
     os.Stdout实现了Reader Writer Closer
     接口A赋值一个大范围的接口B（B包含A）
     类型方法的接收器是指针类型时，T类型不拥有*T指针的方法，类型对象取址赋值给接口对象
-
+    interface{} 空接口 对实现它的类型没有要求  将任意一个值赋给空接口类型
+    var w io.Writer = new(bytes.Buffer) 编译期间断言 *bytes.Buffer的值实现了io.Writer接口类型
+    var _ io.Writer = (*bytes.Buffer)(nil) 显示的转换都实现了这个接口
+    
 
 
 4.flat.Value接口
