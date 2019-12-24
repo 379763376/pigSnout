@@ -11,3 +11,5 @@ Sprintln 使用其操作数的默认格式并返回结果字符串
 
 
 fmt.Errorf函数使用fmt.Sprintf格式化错误信息并返回
+
+Fprintf(w io.Writer, format string, a ...interface{}) 接受实现了io.Writer的类型对象 例如os.Stderr
