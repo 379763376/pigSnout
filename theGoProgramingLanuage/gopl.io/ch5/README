@@ -9,7 +9,7 @@ net/html
 findlinks1案例：
     html.Parse解析传入文本
     visit 返回链接href的slice
-        递归visit 每层上第一个节点和它的兄弟节点 如果该层是a返回href
+        递归visit 每层上第一个子节点和子节点的兄弟节点 如果该层是a返回href
 outline案例：
     循环遍历子节点和子节点的兄弟节点
 
@@ -19,6 +19,8 @@ links, _ := findLinks(url)
 return findLinks(url)  将另一个有多返回值的函数作为返回值
 func CountWordsAndImages(url string) (words, images int, err error) {
     该函数的return语句可以省略操作数 bare return
+return words, images, err
+
 4.错误
 一个良好的程序永远不应该发生panic异常
 额外的返回值：
@@ -27,11 +29,13 @@ func CountWordsAndImages(url string) (words, images int, err error) {
         nil意味着函数运行成功
         non-nil表示失败
     cache.Lookup是key不存在失败的唯一原因
-    value, ok := cache.Lookup(key)
+    value, ok := cache.Lookup(key) ok是一个boole
     if !ok {
 4.1.错误处理策略
-    err中有报错原因：直接返回 if err != nil { return nil, err }
-    err中没有具体说明是哪个导致：自定义返回内容和数据 return nil, fmt.Errorf("parsing %s as HTML: %v", url,err)
+    err中有报错原因：直接返回
+        if err != nil
+        return nil, err
+        return nil, fmt.Errorf("parsing %s as HTML: %v", url,err)
     偶然发生的错误，不可预知的问题导致，明智的选择是重新尝试失败的操作：限制重试的时间间隔或重试的次数，仍然报错就结束函数，向上传播错误
         os.Exit(1)
         wait案例：main函数调用函数，如果错误不为空，结束执行 打印错误 os.Exit(1)
@@ -42,14 +46,18 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     只需要输出错误信息，不需要中断程序：
         log.Printf("ping failed: %v; networking disabled",err)
         fmt.Fprintf(os.Stderr, "ping failed: %v; networking disabled\n", err)
-    直接忽略错误 return fmt.Errorf("failed to create temp dir: %v",err)
+    直接忽略错误
+        return fmt.Errorf("failed to create temp dir: %v",err)
         dir, err := ioutil.TempDir("", "scratch") 创建临时目录
         os.RemoveAll(dir) 清楚临时目录 不做错误处理 即便没有删除 操作系统会定期的清理临时目录
-        r, _, err := in.ReadRune()  ;  if err == io.EOF {
+
 文件结尾错误（EOF)：
      io包保证任何由文件结束引起的读取失败都返回同一个错误——io.EOF
      var EOF = errors.New("EOF")
      固定的错误信息——“EOF
+        r, _, err := in.ReadRune()  ;  if err == io.EOF { break}
+
+
 5.函数值  函数类型的变量
     func A(n int) int { return n * n } 定义函数； f := square 函数值f; f（3）函数值的调用
     如果 func B的参数类型和A一样，B类型的对象可以赋值给f，参数不一致则无法赋值
@@ -60,8 +68,10 @@ func CountWordsAndImages(url string) (words, images int, err error) {
         fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
         func forEachNode(n *html.Node, pre, post func(n *html.Node))
         函数值作为参数传递 先打印start节点 逐层递进，再打印end节点，逐层返回
+
 6.匿名函数
     func关键字后没有函数名，函数值字面量表达式 称为匿名函数
+    函数字面量允许我们在使用函数时,再定义它
     strings.Map(func(r rune) rune { return r + 1 }, "HAL-9000")
     squares案例：
         squares函数 返回值是函数 该函数内部定义了局部变量和匿名方法，匿名方法可以访问和更新局部变量 匿名函数和squares中,存在变量引用
@@ -82,7 +92,7 @@ func CountWordsAndImages(url string) (words, images int, err error) {
     links案例：
         link, err := resp.Request.URL.Parse(a.Val) 解析获取URL
         links中存储的不是href属性的原始值,而是通过resp.Request.URL解析后的值，可以直接被http.Get访
-        广度优先遍历图：
+    findlinks3案例：广度优先遍历图：
             广度优先算法会为每个元素调用一次f。每次f执行完毕后,会返回一组待访问元素。这些元素会被加入到待访问列表中。当待访问列表中的所有元素都被访问后,breadthFirst函数运行结束。为了避免同一个元素被访问两次,代码中维护了一个map
             一个算法实现中worklist的值在每次循环完就赋予新的值，外层for循环是一个死循环，内层每次都是新的items,除非没有新的url 循环就会结束
 6.1.警告:捕获迭代变量

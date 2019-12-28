@@ -3,6 +3,7 @@ go run
 go build
 ./二进制文件
 go get gopl.io/ch1/helloworld获取代码
+main包 定义了一个独立可执行的程序,而不是一个库
 gofmt
 goimports
 
@@ -16,7 +17,7 @@ strings.Join(os.Args[1:], " ")
 3.dup案例：
 查找重复行
 3.1.读取输入，行内容为key，遇到重复++
-make(map[string]int)
+make(map[string]int) 内置函数创建空map
 bufio.NewScanner(os.Stdin)
 3.2.读取文件作为输入，循环输入变量，打开读取文件作为函数输入
 f, err := os.Open(arg) 读取被打开的文件，返回两个值

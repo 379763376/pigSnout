@@ -24,7 +24,7 @@ slice之间不能比较 节型slice可以用bytes.Equal函数比较 其他类型
 slice是否为nil
     一个nil值的slice并没有底层数组
     测试是否为空不应该是len(s),而是和nil比较
-    var s []int 是nil,s=nil 是nil,[]int(nil),[]int{}不是nil
+    var s []int 是nil,s=nil 是nil,[]int(nil) 是nil,[]int{}不是nil
 内置的make函数创建一个指定元素类型、 长度和容量的slice
     make创建了一个匿名的数组变量，然后返回一个slice； 只有通过返回的slice才能引用底层匿名的数组变量
     make([]T, len) 容量等于长度
@@ -62,8 +62,10 @@ map[string]int{}  创建空的map的
     if age, ok := ages["bob"]; !ok { /* ... */ }
 map类型的零值是nil  map == nil
     查找、删除、len和range循环都可以安全工作在nil值的map上
+    var ages map[string]int
+    ages 是nil， len(ages)是 0 ，所以判断map是否nil要用是否等于nil
     向一个nil值的map存入元素将导致一个panic异常
-不能对map的元素进行取址操作
+不能对map的元素进行取址操作 map可能随着元素数量的增长而重新分配更大的内存空间
 遍历：
     for key, value := range map { 迭代顺序是不确定
     for key := range map
@@ -100,7 +102,6 @@ struct{}。它的大小为0
 构体成员Tag。一个构体成员Tag是在编译阶段关联到该成员的元信息字符串
 type Employee struct {
     ID int
-    Name string
     Name, Address string
     DoB time.Time
     Employee *Employee
@@ -134,6 +135,7 @@ treesort案例：使用一个二叉树来实现slice排序
     func Scale(p Point, factor int) Point
 因为在Go语言中,所有的函数参数都是值拷贝传入的,函数参数将不再是函数调用时的原始变量
 pp := &Point{1, 2}  创建并初始化一个结构体变量
+以下写法等价：
     pp := new(Point)
     *pp = Point{1, 2}
 如果结构体的成员都可以比比较

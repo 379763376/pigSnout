@@ -138,7 +138,8 @@ rune序列可能更方便,因为rune大小一致,支持数组索引和方便切�
 
 r := []rune(s)
 fmt.Println(string(r))  将一个[]rune类型的Unicode字符slice或数组转为string,则对它们进行UTF8编码
-5.4&&5.5. 字符串、切片、数字
+
+5.4&&5.5. 字符串、切片、数字、转换
 bytes、strings、strconv和unicode包
 strings :字符串的查询、替换、比较、截断、拆分和合并等功能、ToUpper和ToLower
     strings.LastIndex
@@ -150,7 +151,7 @@ strings :字符串的查询、替换、比较、截断、拆分和合并等功�
     func Join(a []string, sep string) string
 bytes：[]byte的操作
     bytes.Buffer
-        用于字节slice的缓存 随着string、byte或[]byte等类型数据的写入可以动态增长
+        字节slice的缓存 随着string、byte或[]byte等类型数据的写入可以动态增长
         buf.WriteByte('[') 写入ascii
         buf.WriteString(", ")
         fmt.Fprintf(&buf, "%d", v) 写入数据

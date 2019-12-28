@@ -1,8 +1,0 @@
-bufio.NewScanner(r io.Reader) 函数参数是接口类型，返回Scanner
-os.Stdin 实现了io.Reader
-os.Open(pathString) 打开文件，实现了io.Reader
-input.Scan() 判断是否结果是true false
-input.Text() 内容
-
-ioutil.ReadFile(filepath) 返回字节切片
-ioutil.ReadAll(r io.Reader) 接收一个实现了Reader接口方法的类型对象，例如resp.Body
