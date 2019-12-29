@@ -1,42 +1,34 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"sync"
-)
-
-var cache = struct {
-	sync.Mutex
-	mapping map[string]string
-}{
-	//mapping: make(map[string]string),
-	mapping: map[string]string{
-		"zs": "lz",
-	},
-}
-type ByteCounter int
-
-func (c *ByteCounter)Write(p []byte) (n int, err error)  {
-	*c += ByteCounter(len(p))
-	return len(p),nil
-}
-func (c *ByteCounter)String(){
-	fmt.Fprint(os.Stdout,c)
-}
-
-func toPrint(stringer *ByteCounter, s string) {
-	stringer.String()
-}
 func main() {
-	var c  ByteCounter
-	fmt.Fprintf(&c,"","")
-	toPrint(&c,"xxxx")
-}
+	var x IntSet
+	x.Add(0)
+	println(x.Has(0))
 
-func Lookup(key string) string {
-	cache.Lock()
-	v := cache.mapping[key]
-	cache.Unlock()
-	return v
+}
+type IntSet struct {
+	words []uint64
+}
+// Has reports whether the set contains the non-negative value x.
+func (s *IntSet) Has(x int) bool {
+	word, bit := x/64, uint(x%64)
+	return word < len(s.words) && s.words[word]&(1<<bit) != 0
+}
+// Add adds the non-negative value x to the set.
+func (s *IntSet) Add(x int) {
+	word, bit := x/64, uint(x%64)
+	for word >= len(s.words) {
+		s.words = append(s.words, 0)
+	}
+	s.words[word] |= 1 << bit
+}
+// UnionWith sets s to the union of s and t.
+func (s *IntSet) UnionWith(t *IntSet) {
+	for i, tword := range t.words {
+		if i < len(s.words) {
+			s.words[i] |= tword
+		} else {
+			s.words = append(s.words, tword)
+		}
+	}
 }

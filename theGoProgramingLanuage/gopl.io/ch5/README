@@ -99,7 +99,7 @@ return words, images, err
     循环体中声明的变量，在循环内部的匿名函数被使用
     当删除操作执行时,for循环已完成,dir中存储的值等于最后一次迭代的值。这意味着,每次对os.RemoveAll的调用删除的都是相同的目录
     iterationvar案例：执行匿名函数的时候for循环已经执行完了，d的值变成最后一次迭代的值
-
+        引入一个内部变量，初始化外部变量 dir := dir
 7.变参函数
     定义： func sum(vals...int) int 在参数列表的最后一个参数类型之前加上省略符号“...”
     传递切片类型： fmt.Println(sum(values...)) 参数已经是切片类型，在最后一个参数后加上省略符
@@ -115,11 +115,14 @@ return words, images, err
     title2案例：
         代替多次的close: defer resp.Body.Close()
     ioutil ReadFile deffer对打开的文件关闭
+
     互斥锁： mu.lock 后面跟defer mu.Unlock
-    trace案例：记录函数的运行时间
+    trace案例：记录函数的运行时间 这里的defer作用在匿名函数
         defer trace("bigSlowOperation")() 函数执行完调用trace的匿名函数
-        defer func() { fmt.Printf("double(%d) = %d\n", x,result) }() defer 可以访问函数中包括返回值变量在内的所有变量，result是函数返回值变量
-        defer func() { result += x }() 对返回值操作
+        func double(x int) (result int){
+            defer func() { fmt.Printf("double(%d) = %d\n", x,result) }()
+        } defer 可以访问函数中包括返回值变量在内的所有变量，result是函数返回值变量
+    defer func() { result += x }() 对返回值操作
     问题：循环体一次性打开多个文件，defer f.Close，所有文件都被处理之前，没有文件会关闭
     解决：把文件的操作抽象到一个方法中: if err := doFile(filename); err != nil
     fetch案例:
@@ -137,7 +140,7 @@ return words, images, err
     var httpSchemeRE = regexp.MustCompile(`^https?:`)   regexp库文件,检查正则合法性 ， 函数名中的Must前缀是一种针对此类函数的命名约定
     x+0/x 当x==0时 panic报错
     defer1案例： panic发生 调用defer
-    defer2案例： runtime包允许程序员输出堆栈信息
+    defer2案例： runtime包允许程序员输出堆栈信息 defer printStack()
 
 10.recover
     使用方法：
