@@ -1,34 +1,46 @@
 package main
 
-func main() {
-	var x IntSet
-	x.Add(0)
-	println(x.Has(0))
+import (
+	"fmt"
+)
 
+type human interface {
+	birthday()
 }
-type IntSet struct {
-	words []uint64
+type person struct {
+	name, id string
 }
-// Has reports whether the set contains the non-negative value x.
-func (s *IntSet) Has(x int) bool {
-	word, bit := x/64, uint(x%64)
-	return word < len(s.words) && s.words[word]&(1<<bit) != 0
+
+func (p person) birthday()  {
+	fmt.Println("create a human")
 }
-// Add adds the non-negative value x to the set.
-func (s *IntSet) Add(x int) {
-	word, bit := x/64, uint(x%64)
-	for word >= len(s.words) {
-		s.words = append(s.words, 0)
-	}
-	s.words[word] |= 1 << bit
+type stu struct {
+	person
+	school string
 }
-// UnionWith sets s to the union of s and t.
-func (s *IntSet) UnionWith(t *IntSet) {
-	for i, tword := range t.words {
-		if i < len(s.words) {
-			s.words[i] |= tword
-		} else {
-			s.words = append(s.words, tword)
-		}
-	}
+type teacher struct {
+	person
+	tel string
+}
+
+func (s stu) learn() string {
+	return "good"
+}
+func (t *teacher) tech() int  {
+	return 90
+}
+func (t *teacher) String() string  {
+	return  fmt.Sprintf("xxxx%s",t.tel)
+}
+func main() {
+	var s stu
+	var t teacher
+	t = teacher{tel: "1111"}
+	fmt.Printf("%s",s.learn())
+	fmt.Printf("%d",t.tech())
+	fmt.Println(&t)
+	fmt.Println(t)
+	fmt.Println(t.String())
+	//fmt.Println(teacher{}.String())
+
 }
