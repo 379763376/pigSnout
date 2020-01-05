@@ -13,8 +13,13 @@ Sprintln 使用其操作数的默认格式并返回结果字符串
 
 fmt.Errorf函数使用fmt.Sprintf格式化错误信息并返回
 
-Fprintf(w io.Writer, format string, a ...interface{}) 接受实现了io.Writer的类型对象 例如os.Stderr
-fmt.Fprintf(&buf, "%d", v) 其中buf是bytes.Buffer类型
+Fprintf(w io.Writer, format string, a ...interface{})
+    io.Writer可以是
+        os.Stderr
+        buf bytes.Buffer
+        os.Stdout
+    fmt.Printf和fmt.Sprintf都使用了另一个函数fmt.Fprintf来进行封装
+
 
 
 

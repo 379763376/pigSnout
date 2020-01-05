@@ -1,31 +1,54 @@
 接口类型
-接口类中只定义方法 不定义怎么实现
-go中的接口是隐式实现的，方法是显示实现的
+抽象概括：对其他类型行为抽象概括
+go中的接口是隐式实现的，实现了接口中的方法
+场景：
+    引用一些不受我们控制的包时，对于已经存在的具体类型定义一个新的接口
+
 1.接口约定
-一个接口类型，对外只展示自己的方法
+接口类型对象不会暴露：对象的内部值的结构 和 对象支持的基础操作的集合
+接口类型对象会暴露：自己的方法
 fmt.Printf和Sprintf
-    都是fmt.Fprintf来进行封装
+    省去了对格式化部分的重复实现，都是fmt.Fprintf来进行封装
     函数func Fprintf(w io.Writer, format string, args ...interface{}) (int, error)
     第一个参数io.Writer是接口类型，传参对象必须有一个Write函数，证明这个对象就是接口的实现类型
+        io.Writer类型定义了函数Fprintf和这个函数调用者之间的约定 是一个可以调用Write函数的值
     bytecounter案例：一个实现了接口方法Write的类型
     fmt.Stringer接口定义了String方法，类型实现了String方法,
 
 2.接口类型
-    单方法接口
+    定义了一些列方法的集合，实现了所有实现方法的抽象
+        Write(p []byte) (n int, err error)
+        Read(p []byte) (n int, err error)
+        Close() error
+    接口类型的实例：实现了这些方法的具体类型
     组合已有接口--接口内嵌
-
+        type ReadWriter interface {
+            Reader
+            Writer
+        }
+        type ReadWriter interface {
+            Read(p []byte) (n int, err error)
+            Write(p []byte) (n int, err error)
+        }
+        type ReadWriter interface {
+            Read(p []byte) (n int, err error)
+            Writer
+        }
 3.实现接口条件
     定义接口对象
-    接口对象赋值  只要实现了接口的方法 就说这个类型属于这个接口
+    接口对象赋值
+        具体类型对象赋值给接口对象
+        接口对象赋值给接口对象（接口A赋值一个大范围的接口B（B包含A））
     os.Stdout实现了Reader Writer Closer
-    接口A赋值一个大范围的接口B（B包含A）
-    类型方法的接收器是指针类型时，T类型不拥有*T指针的方法，类型对象取址赋值给接口对象
+    类型方法的接收器是指针类型时，需要用一个可寻址对象去调用方法
+
     interface{} 空接口 对实现它的类型没有要求  将任意一个值赋给空接口类型
     var w io.Writer = new(bytes.Buffer) 编译期间断言 *bytes.Buffer的值实现了io.Writer接口类型
     var _ io.Writer = (*bytes.Buffer)(nil) 显示的转换都实现了这个接口
     
+    指针类型或引用类型都有可能被应用类型实现
 
-
+    在需要的时候定义一个新的抽象或者特定特点的组， 而不需要修改具体类型的定义
 4.flat.Value接口
 5.接口值
 5.1.一个包含nil指针的接口不是nil接口
