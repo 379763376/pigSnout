@@ -1,9 +1,19 @@
 package main
 
+import (
+	"fmt"
+	"strconv"
+)
+
 func main() {
-	var x IntSet
-	x.Add(0)
-	println(x.Has(0))
+	//var x IntSet
+	//x.Add(0)
+	//println(x.Has(0))
+	var i int64
+	var st string = "123456"
+	i,_ = strconv.ParseInt(st,10,0)
+	fmt.Printf("%v", i)
+
 
 }
 type IntSet struct {
