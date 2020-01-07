@@ -1,44 +1,35 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
+
+type A struct {
+	a int
+}
+type B struct {
+	A
+	b int
+}
+type I interface {
+	say()
+	hello()
+	hi()
+}
+func (a *A)say()  {
+	fmt.Println("a")
+}
+
+func (a *A)hello()  {
+	fmt.Println("aa")
+}
+
+func (a *A)hi()  {
+	fmt.Println("aaa")
+}
 func main() {
-	//var x IntSet
-	//x.Add(0)
-	//println(x.Has(0))
-	var i int64
-	var st string = "123456"
-	i,_ = strconv.ParseInt(st,10,0)
-	fmt.Printf("%v", i)
-
-
-}
-type IntSet struct {
-	words []uint64
-}
-// Has reports whether the set contains the non-negative value x.
-func (s *IntSet) Has(x int) bool {
-	word, bit := x/64, uint(x%64)
-	return word < len(s.words) && s.words[word]&(1<<bit) != 0
-}
-// Add adds the non-negative value x to the set.
-func (s *IntSet) Add(x int) {
-	word, bit := x/64, uint(x%64)
-	for word >= len(s.words) {
-		s.words = append(s.words, 0)
-	}
-	s.words[word] |= 1 << bit
-}
-// UnionWith sets s to the union of s and t.
-func (s *IntSet) UnionWith(t *IntSet) {
-	for i, tword := range t.words {
-		if i < len(s.words) {
-			s.words[i] |= tword
-		} else {
-			s.words = append(s.words, tword)
-		}
-	}
+	var b B
+	(&b).hi()
+	b.hi()
+	var i I = &b
+	i.hi()
 }
