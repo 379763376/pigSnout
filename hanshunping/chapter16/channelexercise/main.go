@@ -25,7 +25,7 @@ func main() {
 
 	newCat := <-allChan //从管道中取出的Cat是什么?
 
-	fmt.Printf("newCat=%T , newCat=%v\n", newCat, newCat)
+	//fmt.Printf("newCat=%T , newCat=%v\n", newCat, newCat)
 	//下面的写法是错误的!编译不通过
 	//fmt.Printf("newCat.Name=%v", newCat.Name)
 	//使用类型断言
