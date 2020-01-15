@@ -1,56 +1,72 @@
-接口类型
-抽象概括：对其他类型行为抽象概括
-go中的接口是隐式实现的，实现了接口中的方法
-场景：
-    引用一些不受我们控制的包时，对于已经存在的具体类型定义一个新的接口
-
 1.接口约定
-接口类型对象不会暴露：对象的内部值的结构 和 对象支持的基础操作的集合
-接口类型对象会暴露：自己的方法
+接口只定义方法，使用者只用知道这个接口可以干什么
 fmt.Printf和Sprintf
-    省去了对格式化部分的重复实现，都是fmt.Fprintf来进行封装
-    函数func Fprintf(w io.Writer, format string, args ...interface{}) (int, error)
-    第一个参数io.Writer是接口类型，传参对象必须有一个Write函数，证明这个对象就是接口的实现类型
-        io.Writer类型定义了函数Fprintf和这个函数调用者之间的约定 是一个可以调用Write函数的值
-    bytecounter案例：一个实现了接口方法Write的类型
-    fmt.Stringer接口定义了String方法，类型实现了String方法,
+    这两个函数内部都是用了fmt.Fprintf函数进行封装
+    函数的第一个参数类型需要接受一个实现了io.Writer接口的类型实例
+fmt.Stringer
+    给一个类型定义一个String方法，在打印类型对象的时候就可以使用这个方法
 
 2.接口类型
-    定义了一些列方法的集合，实现了所有实现方法的抽象
-        Write(p []byte) (n int, err error)
-        Read(p []byte) (n int, err error)
-        Close() error
-    接口类型的实例：实现了这些方法的具体类型
-    组合已有接口--接口内嵌
-        type ReadWriter interface {
-            Reader
-            Writer
-        }
-        type ReadWriter interface {
-            Read(p []byte) (n int, err error)
-            Write(p []byte) (n int, err error)
-        }
-        type ReadWriter interface {
-            Read(p []byte) (n int, err error)
-            Writer
-        }
+io.Writer只要实现了[]bytes写入就是接口实现，例如文件、内存缓冲区、网络连接、http客户端、压缩工具、哈希
+io.Reader类型的实现 只要实现了读取[]byte
+io.Closer关闭任何可以关闭的
+
+go接口定义习惯--单接口方法
+
+接口内嵌
+
 3.实现接口条件
-    定义接口对象
-    接口对象赋值
-        具体类型对象赋值给接口对象
-        接口对象赋值给接口对象（接口A赋值一个大范围的接口B（B包含A））
-    os.Stdout实现了Reader Writer Closer
-    类型方法的接收器是指针类型时，需要用一个可寻址对象去调用方法
+T类型可以调用*T的方法，是隐式的获取到了地址
+T类型不具有*T类型的方法
+比如*T有String()方法，那么*T实现了fmt.Stringer接口
 
-    interface{} 空接口 对实现它的类型没有要求  将任意一个值赋给空接口类型
-    var w io.Writer = new(bytes.Buffer) 编译期间断言 *bytes.Buffer的值实现了io.Writer接口类型
-    var _ io.Writer = (*bytes.Buffer)(nil) 显示的转换都实现了这个接口
-    
-    指针类型或引用类型都有可能被应用类型实现
+interface{} 空接口 对实现它的类型没有要求  将任意一个值赋给空接口类型
+编译期间断言 *bytes.Buffer的值实现了io.Writer接口类型
 
-    在需要的时候定义一个新的抽象或者特定特点的组， 而不需要修改具体类型的定义
+nil 强制类型转换为实现类型，
+var _ io.Writer = (*bytes.Buffer)(nil)
+
 4.flat.Value接口
+flag.Duration返回一个time.Duration类型实例，该类型实现了String方法
+如果实例对象有String()方法，fmt.Printf打印实例的时候会调用实例的String()方法
+
+实现通过命令行调用函数时，根据变量名传入参数变量值
+实现flag.Value接口方法并封装为一个对外提供服务的函数
+接口实现和调用函数封装步骤：
+    a.定义一个Flag结构体 包含一个结构体
+    b.Flag结构体指针 实现Set方法
+    fmt.Sscanf：使用接收一个string 安装format分割，传递给指定的变量
+    修改实例中的成员值
+    c.封装一个函数，返回Flag结构体成员
+    flag.CommandLine.Var
+        第一个参数是Value接口类型，这个传入实现类型celsiusFlag的实例
+        第二个参数是name是标记
+        第三个是使用说明
+函数调用：
+    调用封装函数，拿到这个实例，如果输入错误在调用Flag结构体Set方法的时候会报错
+    打印实例会调用实例的String()方法
+
 5.接口值
+接口值由两部分组成：具体的类型、类型的值
+接口的零值就是它的类型和值的部分都是nil
+可以把接口对象和nil比较，判断接口是否为空
+调用一个空接口值上的任意方法都会产生panic
+
+赋值过程 调用了一个具体类型到接口类型的隐式转换，
+
+接口具体类型是可比较类型时，可以把接口作为map的key ,可以用作switch的操作数
+如果动态类型是不可比较，则会panic
+
+获取接口值得动态类型fmt.Printf("%T\n", w)
+
+对于动态类型非nil,接口值是nil,在调用方法动态类型的方法时，如果nil是一个无效的接受者 就会报panic
+(*bytes.Buffer).Write 接受者要求是非空，nil的*bytes.Buffer指针有实现这个接口的方法 调用类型方法会panic
+
+接口方法参数类型是可以接受nil类型，定义变量的时候使用接口类型定义，而非实现类型
+
+
+
+
 5.1.一个包含nil指针的接口不是nil接口
 6.sort.Interface接口
 7.http.Handler接口

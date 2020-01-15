@@ -32,7 +32,7 @@ type Value interface {
 */
 
 //!+celsiusFlag
-// *celsiusFlag satisfies the flag.Value interface.
+// *celsiusFlag  the flag.Value interface.
 type celsiusFlag struct{ Celsius }
 
 func (f *celsiusFlag) Set(s string) error {
