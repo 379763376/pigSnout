@@ -1,0 +1,45 @@
+1.
+主函数在执行中，go创建的goroutine也在执行
+main执行结束退出，其他的goroutine也一并退出
+
+2.
+时间模板：Mon Jan 2 03:04:05PM 2006 UTC-0700
+格式化的逆向操作time.Parse
+
+服务端：
+    net.Listen启动监听端口,拿到一个监听对象
+    监听对象调用Accept方法，会直接阻塞，知道一个请求过来拿到一个连接对象
+    处理连接
+客户端：
+    客户端拨号连接 拿到conn
+    io.Copy接收一个
+
+killall 服务名字 , 掉所有名字匹配的进程
+
+改进：
+让每次的调用连接处理都进入一个独立的goroutine
+这样就可以连接多个客户端
+
+3.
+服务端：
+从Conn读取输入数据
+input := bufio.NewScanner(c)
+fmt.Fprintln 把数据写入到管道
+
+客户端：
+使用goroutine的方式写数据到服务端
+io.Copy会阻塞进程，一直等待输入
+
+4.
+goroutine是并发体
+channels是之间的通信
+channel是引用类型，零值是nil，用make创建
+两个相同类型channel可以用 == 比较
+关闭channek后不能写入
+如果没有数据了，就会产生一个零值的数据
+
+无缓存会有goroutine堵塞
+无缓存channel也叫同步channel
+主goroutine需要等待后台goroutine执行完成后再退出，这时用一个同步channel实现
+
+

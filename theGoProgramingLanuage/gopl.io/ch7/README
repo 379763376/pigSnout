@@ -107,4 +107,38 @@ fmt.Errorf 对错误处理做了封装
 
 syscall包中的Errno根据数值找到对应的错误
 Errno是一个系统调用错误的高效表示方式
-9.
+
+9.表达式求值
+接口Expr  任意的表达式
+类型和结构体
+    Var 变量的名字 string
+    literal 浮点型常量 float64
+    unary 结构体 包含字段：操作符rune 操作的数字Expr +x 、-x
+    binary 结构体 包含字段：操作符rune 两个操作数字Expr X+y、x-y、x*y
+    call 结构体 包含字段：函数名字string、Expr接口slice
+    Env 变量名字映射为具体的值 map[Var]float64
+    Expr 接口：
+       Eval 方法接收一个Env 返回一个浮点数
+Var实现了Eval方法，将Var通过映射获取对应的浮点数
+literal实现了Eval方法，将浮点数常量强转为浮点数
+unary实现了Eval方法，Var转为float
+binary实现了Eval方法，Var转为float,两个float
+call实现了Eval方法，依据下标取出slice中数据 转成float 调用math包函数进行运算
+
+TestEval测试函数
+    定义一个对象包含要测试的数据，每个数据是一个结构体，结构体包含：表达式string、Env 变量和值得映射、期望得到的值string
+
+通过将静态检查
+
+10.类型断言
+
+11. 基于类型断言区别错误类型
+
+12.通过类型断言查询接口
+
+13.类型分支
+
+14.基于标记的XML解码
+
+15.补充
+

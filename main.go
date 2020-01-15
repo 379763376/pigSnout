@@ -1,35 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"os"
+)
 
-
-type A struct {
-	a int
-}
-type B struct {
-	A
-	b int
-}
-type I interface {
-	say()
-	hello()
-	hi()
-}
-func (a *A)say()  {
-	fmt.Println("a")
-}
-
-func (a *A)hello()  {
-	fmt.Println("aa")
-}
-
-func (a *A)hi()  {
-	fmt.Println("aaa")
-}
 func main() {
-	var b B
-	(&b).hi()
-	b.hi()
-	var i I = &b
-	i.hi()
+	r, err := io.Copy(os.Stdout, os.Stdin)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Print(r)
 }
