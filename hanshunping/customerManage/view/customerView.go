@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"go_code/customerManage/service"
-	"go_code/customerManage/model"
+	"pigSnout/hanshunping/customerManage/model"
+	"pigSnout/hanshunping/customerManage/service"
 )
 
 type customerView struct {

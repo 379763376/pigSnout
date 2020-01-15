@@ -69,6 +69,42 @@ flag.Duration返回一个time.Duration类型实例，该类型实现了String方
 
 5.1.一个包含nil指针的接口不是nil接口
 6.sort.Interface接口
+定义接口：接口做了一个方法的抽象，不管是什么类型的数据排序都要满足这三个接口函数
+定义接口实现类型
+调用排序sort.Sort(具体类型对象)
+
+tabwriter.Writer 格式化输出包
+
+slice中存储结构体切片，这样在排序的时候交换指针比交换每个Track类型快
+指针是一个机器码长度
+
+如果要逆序输出
+    sort.Sort(sort.Reverse(具体类型对象))
+    函数Reverse返回一个包含原有sort.Interface值的reverse类型实例
+    reverse类型Less方法，Sort中调用实现类的Less时传入的参数是 在调用接口方法前先把下标索引换了
+
+sort包为[]int,[]string和[]float64的正常排序提供了特定版本的函数和类型
+sort.Ints对int slice排序
+sort.IntsAreStored判断是否排序
+
 7.http.Handler接口
+进化一：
+使用ServeMux 操作逻辑被分到不同的方法中
+方法值转为转为Handler的实现类型HandlerFunc
+http.HandlerFunc是一个让函数值满足一个接口的适配器
+缺点：每次需要转
+进化二：改进了传递一个方法值，不用转
+ServeMux.HandlerFunc接受的第二个参数是一个函数类型 这样不用转 直接传递方法值就行
+进化三：
+一个应用程序的多个文件中定义HTTP handler也是非常典型的
+net/http包提供了一个全局的ServeMux实例DefaultServerMux和包级别的http.Handle和http.HandleFunc函数
+DefaultServeMux作为服务器的主handler，不需要将它传给ListenAndServe函数；nil值就可以工作
+
+注意:如果用协程调用每一个handler 要注意不用协程之间资源的竞争
 8.error接口
+创建error返回的是一个指针类型，所以错误比较不能直接用==
+fmt.Errorf 对错误处理做了封装
+
+syscall包中的Errno根据数值找到对应的错误
+Errno是一个系统调用错误的高效表示方式
 9.
