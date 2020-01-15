@@ -2,14 +2,29 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"os"
+	"sync"
+	"time"
 )
 
 func main() {
-	r, err := io.Copy(os.Stdout, os.Stdin)
-	if err != nil {
-		fmt.Println(err)
+	ca := make(chan int)
+	var wg sync.WaitGroup
+	for i := 0; i<10 ; i++{
+		wg.Add(1)
+		go func(i int) {
+			time.Sleep(1000*time.Millisecond)
+			defer wg.Done()
+			ca<-i
+		}(i)
 	}
-	fmt.Print(r)
+
+	go func() {
+		wg.Wait()
+		close(ca)
+	}()
+
+	for v := range ca{
+		fmt.Println(v)
+	}
+
 }
