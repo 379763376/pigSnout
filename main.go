@@ -2,29 +2,35 @@ package main
 
 import (
 	"fmt"
-	"sync"
 	"time"
 )
 
 func main() {
-	ca := make(chan int)
-	var wg sync.WaitGroup
-	for i := 0; i<10 ; i++{
-		wg.Add(1)
-		go func(i int) {
-			time.Sleep(1000*time.Millisecond)
-			defer wg.Done()
-			ca<-i
-		}(i)
-	}
-
+	c1 := make(chan int,20)
 	go func() {
-		wg.Wait()
-		close(ca)
+		loop:
+		for i :=0;;i++{
+			time.Sleep(10*time.Millisecond)
+			c1<-i
+			fmt.Println("c1<-",i)
+			if i == 30{
+				close(c1)
+				break loop
+			}
+		}
+		fmt.Print("finish c1")
 	}()
-
-	for v := range ca{
-		fmt.Println(v)
+	loopM:
+	for{
+		time.Sleep(1000*time.Millisecond)
+		select {
+		case i,ok := <-c1:
+			if !ok {
+				break loopM
+			}
+			fmt.Println(i)
+		}
 	}
+	fmt.Println("finish")
 
 }
