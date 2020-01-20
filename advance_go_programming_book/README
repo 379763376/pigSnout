@@ -69,3 +69,15 @@ channel刚开始接收2以上自然数，第一个素数2
 
 以上每个并发体处理的任务太细微，每个小任务都起一个并发
 细粒度的并发， CSP模型中固有的消息传递的代价太高了
+15.并发的安全退出
+select
+    随机选一个可用的分支
+    没有可用选default
+    否则阻塞  select{}也会阻塞
+<-time.After(time.Second) 初始退出
+后台逻辑写在select中，当收到close信号是case被匹配到 可以退出当前的goroutine
+使用sync.WaitGroup保证每个后台goroutine任务都清理完成，再退出主goroutine
+16.context包
+线程安全退出或超时的控制
+使用时结合sync
+当main函数完成工作前，调用cancel()通知后台goroutine退出，避免goroutine泄漏
