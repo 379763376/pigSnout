@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"pigSnout/advance_go_programming_book/p1/pubSub/pubsub"
+	"pigSnout/advance_go_programming_book/p1_base/pubSub/pubsub"
 	"strings"
 	"time"
 )

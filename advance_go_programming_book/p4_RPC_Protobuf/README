@@ -1,2 +1,53 @@
 RPC 远程过程调用
 Protobuf 接口交流语言
+1.PRC
+RPC和IPC
+RPC分布式系统中不同节点间流行的通信方式
+RPC是基于net构建的
+
+RPC方法规范：
+服务端：
+定义方法：两个可序列化参数，第二个参数是指针类型，返回一个error,是公开方法
+注册类型实例对象为一个RPC服务
+监听TCP协议，和端口
+开启一个端口监听阻塞 等待接受访问，rpc.ServeConn提供服务
+客户端：
+rpc.Dial拨号
+定义一个变量接收远程调用返回的序列化对象，调用方法传值 第一个参数是调用的注册名称和该注册名称下的方法名称，第一个参数是一个传值，第三个参数是一个地址 用来接收返回的数据
+
+2.引进RPC中间接口规范
+三种角色：方法的实现者、方法的调用者、服务端和客户端的RPC接口规范
+服务端
+    接口定义：定义服务名字、服务方法（接口）、服务注册（接口注册）
+    服务端接口实现并注册
+客户端调用：
+    定义一个客户端调用方法的抽象，用户只需要指定地址端口和调用的方法
+    服务名字+方法名字找到接口的具体实现，调用实现类的方法
+
+3.基于json跨语言的RPC
+rpc库采用gob编码 go特有的
+
+net/rpc/jsonrpc 实现基于json的跨语言的RPC
+服务端：
+rpc.ServeCodec(jsonrpc.NewServeCodec(conn))
+客户端：
+rpc.NewClientWithCodec(jsonrpc.NewClientCodec(conn))  基于该链接建立针对客户端的json编解码器
+直接访问ip+port会返回API信息
+指定调用API返回具体操作结果
+
+请求和返回参数三部分:
+    客户端维护一个调用编号不是必填 go语言的RPC框架支持异步调用，调用顺序和结果顺序不一致 通过id来识别对应的调用
+    result为返回结果，
+    如果出错error
+
+4.基于http跨语言的RPC
+内置框架已支持http协议上的RPC,但是采用gob协议
+在http协议上提供jsonrpc服务
+起了一个http服务，rpc.ServeRequest(jsonrpc.NewServerCodec(conn)) 接收用户的请求
+这样就可以外层是http 内层干活的还是rpc
+
+5.Protobuf
+Protobuf 保证RPC的接口规范和安全
+Protobuf 编码技术 通过成员的唯一编号来绑定对应的数据
+最终生成的Go结构体可以自由采用JSON或gob等编码格式
+go安装插件protoc-gen-go实现protobuf生成相应的GO代码，目前protoc编译器不支持Go语言

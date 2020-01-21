@@ -1,4 +1,4 @@
-package p1
+package p1_base
 
 import (
 	"sync/atomic"

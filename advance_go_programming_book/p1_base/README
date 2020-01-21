@@ -81,3 +81,21 @@ select
 线程安全退出或超时的控制
 使用时结合sync
 当main函数完成工作前，调用cancel()通知后台goroutine退出，避免goroutine泄漏
+17.错误和异常
+syscall.Errno
+defer
+recover
+即使在包内部使用了 panic ， 但是在导出函数时会被转化为明确的错误值
+
+错误的上下文
+上层用户获取新的错误，丢失底层最基础的错误类型
+包装原始错误，保留完整的原始错误类型，方便定位
+支持RPC等跨网络传输，错误序列化为json数据
+
+recover 函数调用有着更严格的要求:我们必须在 defer 函数中直接调用recover
+嵌套的 defer 函数中调用 recover 也将导致无法捕获异常
+必须要和有异常的栈帧只隔一个栈帧，recover 函数才能正常捕获异常
+recover 函数捕获的是祖父一级调用函数栈帧的异常
+
+switch类型断言，对不同的错误捕获执行不同的处理
+
