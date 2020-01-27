@@ -1,0 +1,11 @@
+httprouter 压缩字典树
+
+自定义一个中间件，实现了业务逻辑和非业务剥离
+http.Handler
+chi框架
+gin中间件仓库
+
+gopkg.in/go-playground/validator.v9对结构体对象属性值校验
+针对tag错误定制
+
+
