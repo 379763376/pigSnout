@@ -1,0 +1,144 @@
+1.接口约定
+接口只定义方法，使用者只用知道这个接口可以干什么
+fmt.Printf和Sprintf
+    这两个函数内部都是用了fmt.Fprintf函数进行封装
+    函数的第一个参数类型需要接受一个实现了io.Writer接口的类型实例
+fmt.Stringer
+    给一个类型定义一个String方法，在打印类型对象的时候就可以使用这个方法
+
+2.接口类型
+io.Writer只要实现了[]bytes写入就是接口实现，例如文件、内存缓冲区、网络连接、http客户端、压缩工具、哈希
+io.Reader类型的实现 只要实现了读取[]byte
+io.Closer关闭任何可以关闭的
+
+go接口定义习惯--单接口方法
+
+接口内嵌
+
+3.实现接口条件
+T类型可以调用*T的方法，是隐式的获取到了地址
+T类型不具有*T类型的方法
+比如*T有String()方法，那么*T实现了fmt.Stringer接口
+
+interface{} 空接口 对实现它的类型没有要求  将任意一个值赋给空接口类型
+编译期间断言 *bytes.Buffer的值实现了io.Writer接口类型
+
+nil 强制类型转换为实现类型，
+var _ io.Writer = (*bytes.Buffer)(nil)
+
+4.flat.Value接口
+flag.Duration返回一个time.Duration类型实例，该类型实现了String方法
+如果实例对象有String()方法，fmt.Printf打印实例的时候会调用实例的String()方法
+
+实现通过命令行调用函数时，根据变量名传入参数变量值
+实现flag.Value接口方法并封装为一个对外提供服务的函数
+接口实现和调用函数封装步骤：
+    a.定义一个Flag结构体 包含一个结构体
+    b.Flag结构体指针 实现Set方法
+    fmt.Sscanf：使用接收一个string 安装format分割，传递给指定的变量
+    修改实例中的成员值
+    c.封装一个函数，返回Flag结构体成员
+    flag.CommandLine.Var
+        第一个参数是Value接口类型，这个传入实现类型celsiusFlag的实例
+        第二个参数是name是标记
+        第三个是使用说明
+函数调用：
+    调用封装函数，拿到这个实例，如果输入错误在调用Flag结构体Set方法的时候会报错
+    打印实例会调用实例的String()方法
+
+5.接口值
+接口值由两部分组成：具体的类型、类型的值
+接口的零值就是它的类型和值的部分都是nil
+可以把接口对象和nil比较，判断接口是否为空
+调用一个空接口值上的任意方法都会产生panic
+
+赋值过程 调用了一个具体类型到接口类型的隐式转换，
+
+接口具体类型是可比较类型时，可以把接口作为map的key ,可以用作switch的操作数
+如果动态类型是不可比较，则会panic
+
+获取接口值得动态类型fmt.Printf("%T\n", w)
+
+对于动态类型非nil,接口值是nil,在调用方法动态类型的方法时，如果nil是一个无效的接受者 就会报panic
+(*bytes.Buffer).Write 接受者要求是非空，nil的*bytes.Buffer指针有实现这个接口的方法 调用类型方法会panic
+
+接口方法参数类型是可以接受nil类型，定义变量的时候使用接口类型定义，而非实现类型
+
+
+
+
+5.1.一个包含nil指针的接口不是nil接口
+6.sort.Interface接口
+定义接口：接口做了一个方法的抽象，不管是什么类型的数据排序都要满足这三个接口函数
+定义接口实现类型
+调用排序sort.Sort(具体类型对象)
+
+tabwriter.Writer 格式化输出包
+
+slice中存储结构体切片，这样在排序的时候交换指针比交换每个Track类型快
+指针是一个机器码长度
+
+如果要逆序输出
+    sort.Sort(sort.Reverse(具体类型对象))
+    函数Reverse返回一个包含原有sort.Interface值的reverse类型实例
+    reverse类型Less方法，Sort中调用实现类的Less时传入的参数是 在调用接口方法前先把下标索引换了
+
+sort包为[]int,[]string和[]float64的正常排序提供了特定版本的函数和类型
+sort.Ints对int slice排序
+sort.IntsAreStored判断是否排序
+
+7.http.Handler接口
+进化一：
+使用ServeMux 操作逻辑被分到不同的方法中
+方法值转为转为Handler的实现类型HandlerFunc
+http.HandlerFunc是一个让函数值满足一个接口的适配器
+缺点：每次需要转
+进化二：改进了传递一个方法值，不用转
+ServeMux.HandlerFunc接受的第二个参数是一个函数类型 这样不用转 直接传递方法值就行
+进化三：
+一个应用程序的多个文件中定义HTTP handler也是非常典型的
+net/http包提供了一个全局的ServeMux实例DefaultServerMux和包级别的http.Handle和http.HandleFunc函数
+DefaultServeMux作为服务器的主handler，不需要将它传给ListenAndServe函数；nil值就可以工作
+
+注意:如果用协程调用每一个handler 要注意不用协程之间资源的竞争
+8.error接口
+创建error返回的是一个指针类型，所以错误比较不能直接用==
+fmt.Errorf 对错误处理做了封装
+
+syscall包中的Errno根据数值找到对应的错误
+Errno是一个系统调用错误的高效表示方式
+
+9.表达式求值
+接口Expr  任意的表达式
+类型和结构体
+    Var 变量的名字 string
+    literal 浮点型常量 float64
+    unary 结构体 包含字段：操作符rune 操作的数字Expr +x 、-x
+    binary 结构体 包含字段：操作符rune 两个操作数字Expr X+y、x-y、x*y
+    call 结构体 包含字段：函数名字string、Expr接口slice
+    Env 变量名字映射为具体的值 map[Var]float64
+    Expr 接口：
+       Eval 方法接收一个Env 返回一个浮点数
+Var实现了Eval方法，将Var通过映射获取对应的浮点数
+literal实现了Eval方法，将浮点数常量强转为浮点数
+unary实现了Eval方法，Var转为float
+binary实现了Eval方法，Var转为float,两个float
+call实现了Eval方法，依据下标取出slice中数据 转成float 调用math包函数进行运算
+
+TestEval测试函数
+    定义一个对象包含要测试的数据，每个数据是一个结构体，结构体包含：表达式string、Env 变量和值得映射、期望得到的值string
+
+通过将静态检查
+
+10.类型断言
+
+11. 基于类型断言区别错误类型
+
+12.通过类型断言查询接口
+
+13.类型分支
+
+14.基于标记的XML解码
+
+15.补充
+

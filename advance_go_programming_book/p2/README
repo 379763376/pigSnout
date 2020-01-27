@@ -1,0 +1,5 @@
+1.CGO
+import "C" 语句启用CGO特性
+C.CString Go语言字符串转换为C语言字符串
+C.puts 标准输出打印
+

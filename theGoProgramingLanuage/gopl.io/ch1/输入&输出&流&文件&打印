@@ -1,0 +1,52 @@
+打印：
+几种类型的print
+Fprintf 根据格式说明符格式化并写入w
+Printf 根据格式说明符格式化并写入标准输出
+Sprintf 根据格式说明符格式化并返回结果字符串
+Fprint 使用其操作数的默认格式并向w写入数据
+Print 使用其操作数的默认格式并将其写入标准输出
+Sprint 使用其操作数的默认格式并返回结果字符串
+Fprintln 使用其操作数的默认格式并向w写入数据
+Println 使用其操作数的默认格式并将其写入标准输出
+Sprintln 使用其操作数的默认格式并返回结果字符串
+
+
+fmt.Errorf函数使用fmt.Sprintf格式化错误信息并返回
+
+Fprintf(w io.Writer, format string, a ...interface{})
+    io.Writer可以是
+        os.Stderr
+        buf bytes.Buffer
+        os.Stdout
+    fmt.Printf和fmt.Sprintf都使用了另一个函数fmt.Fprintf来进行封装
+
+
+
+
+输入输出：
+bufio.NewScanner(r io.Reader) 函数参数是接口类型，返回Scanner
+os.Stdin 实现了io.Reader
+os.Open(pathString) 返回一个*io.File类型对象，实现了io.Reader
+bufio.NewReader(rd io.Reader) *Reader {}
+*Reader方法：ReadRune() 循环输入使用rune编码
+
+
+
+
+input.Scan() 判断是否结果是true false
+input.Text() 内容
+
+ioutil.ReadFile(filepath string) 返回字节切片
+ioutil.ReadAll(r io.Reader) 接收一个实现了io.Reader接口方法的类型对象，
+
+flag包读取命令行输入
+flag.Bool()返回指针bool
+flag.String() 返回指针字符串
+flag.Args() 返回字符串slice
+
+bytes.Buffer 字节slice的缓存
+WriteByte 写入ASCII字符
+WriteString
+WriteRune
+
+

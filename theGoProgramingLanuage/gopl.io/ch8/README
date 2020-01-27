@@ -1,0 +1,139 @@
+1.goroutine
+主函数在执行中，go创建的goroutine也在执行
+main执行结束退出，其他的goroutine也一并退出
+
+2.并发的clock服务
+时间模板：Mon Jan 2 03:04:05PM 2006 UTC-0700
+格式化的逆向操作time.Parse
+
+服务端：
+    net.Listen启动监听端口,拿到一个监听对象
+    监听对象调用Accept方法，会直接阻塞，知道一个请求过来拿到一个连接对象
+    处理连接
+客户端：
+    客户端拨号连接 拿到conn
+    io.Copy接收一个
+
+killall 服务名字 , 掉所有名字匹配的进程
+
+改进：
+让每次的调用连接处理都进入一个独立的goroutine
+这样就可以连接多个客户端
+
+3.并发的echo服务
+服务端：
+从Conn读取输入数据
+input := bufio.NewScanner(c)
+fmt.Fprintln 把数据写入到管道
+
+客户端：
+使用goroutine的方式写数据到服务端
+io.Copy会阻塞进程，一直等待输入
+
+4.channel
+goroutine是并发体
+channels是之间的通信
+channel是引用类型，零值是nil，用make创建
+两个相同类型channel可以用 == 比较
+写数据发生在通知读数据之前，这样保证了不会死锁
+关闭channek后不能写入，当发送的数据读完了，就会读到一个零值的数据
+接收操作并不会停止，而是不断的接收零值，可以用一个接收channel判断是否有接收到数据，去判断是否对方已经关闭channel
+
+
+无缓存会有goroutine堵塞
+无缓存channel也叫同步channel
+改进：
+之前的客户端当主程序执行完后不去等待后台goroutine
+当主程序要停止时需要等后台的goroutine执行完成后再退出，这时用一个同步channel实现
+
+当用户端关闭conn，服务端会受到信号end-of-file
+
+用channel将多个goroutine串联起来 就是 pipeline
+
+for range可以直接在channel上迭代，当channel没有数据时 会结束循环，这样就不用用户端去作判断了
+
+不能关闭nil值的channel，不能重复关闭
+
+A->B->C
+a有一个channel是out  chan<-
+b有两个channel是in和out    in是<-chan
+c有一个channel是in
+out channel是可以关闭的
+
+定义连个全局的channel,不指定方向，只是在定义方法的时候指定方向
+把没指定方向的channel赋值到有方向的channel 隐式转换
+
+声明channel的时候指定容量 就是带缓存的channel
+
+多个goroutine并发的向一个channel写入数据，或者多个从一个channel读取数据
+场景：
+同时启三个后台goroutine 发送一个请求到三个地址,哪个先返回数据 先用哪个
+如果没有缓存接收另外两个,会发生goroutine泄漏
+
+泄漏的goroutine不会被自动回收
+
+一个pipeline有多个环节，后面环节数据的消耗尽量和第一个阶段数据的产生一致，这样就能高效的工作
+不能把数据缓存堆到一个环节
+
+5.并发的循环
+for声明初始化的变量，常量值在后台goroutine还没之前就已经迭代到最后一个了
+所以goroutine 匿名函数是不可以直接使用for中声明的变量，需要在for内部保存一个 或者直接传给goroutine
+
+当一个goroutine还在往channel发送数据，但是接收数据的gouroutine已经停止了，就会有goroutine泄漏，可能导致整个程序卡住或者out of memory
+
+为了知道最后一个goroutine什么时候结束：增加一个计数器 goroutine开始前加1，结束后减1
+sync.WaitGroup
+wg.Add(1) 保证是在Wait之前调用
+defer wg.Done 每次结束goroutine的时候会调用
+wg.Wait()让所有goroutine都结束后再关闭管道，死锁 直到wg的counter是0
+
+wg.Wait()等待关闭channel放的位置：
+    不能放到主函数 因为他会直接让程序死锁
+
+main goroutine是如何大部分的时间被唤醒执行其range循环，等待worker发送值或者closer来关闭channel的
+
+6.并发的web爬虫
+当并行的网络连接 超过了每一个进程打开文件数的限制 导致net.Dial调用查找DNS失败的错误
+CPU核数的限制计算负载
+硬盘转轴和磁头数限制了你的本地磁盘IO操作频率
+网络带宽限制了你的下载速度上限
+一个web服务的服务容量上限
+
+限制并发程序使用的资源 适应自己的运行环境
+信号量数量和其能操作的IO资源数量应保持接近
+进入到下一个goroutine的数据做一个限制，例如每次放入20个，当队列满了就等待中
+
+程序应该在所有url都爬取完后正常停止
+解决方式一：
+初始计数器为1
+每拿到一个入口url对全局计数器加1
+没从管道拿一个slice元素 计数器减1
+当计数器变为0时说明没有任务了，主程序停止
+解决方式二：
+使用20个常驻的爬取goroutine,保证最多20个HTTP请求
+这20个爬取把爬到的数据放到一个管道
+主程序从这个管道循环接收数据，把没爬取过的url放到另一个管道
+
+7.基于select的多路复用
+节拍器函数 time.Tick(1 * time.Second)，会返回一个管道 并定时的往管道发送时间戳
+
+一个goroutine倒计时
+一个goroutine获取到输入 中断倒计时
+
+我们要从两个中的一个获取信息，保证不会第一个执行完或者中断 接收者发生死锁
+
+<-time.After 启动一个新的channel 在经过具体的时间后 往该channel发送一个独立的值
+
+当多个case都满足时，select应该随机的选择一个执行，保证每一个channel都有被select的机会
+
+time.Tick节拍器函数会有内存泄漏，因为接收已经停止了，所以只有整个生命周期都需要这个时间 我们才用它比较合理
+
+我们应该使用time.NewTicker构造函数 拿到一个实例对象
+可以使用对象的stop方法，销毁这个goroutine，这样当用完ticker的时候就把管道关掉 把goroutine停掉 系统垃圾回收会把这个没有被引用的管道回收
+
+select语句中操作nil的channel永远都不会被select到
+nil来激活或者禁用case
+
+8.并发的目录遍历
+程序实现查看指定目录磁盘的使用情况
+当命令行传入-v是 每隔一段时间打印当前累加值
