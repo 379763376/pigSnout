@@ -31,7 +31,7 @@ func main() {
 
 /*
 //!+textoutput
-$ go build gopl.io/ch4/issues
+$ go build gopl.io/ch4复合数据类型/issues
 $ ./issues repo:golang/go is:open json decoder
 13 issues:
 #5680    eaigner encoding/json: set key converter on en/decoder

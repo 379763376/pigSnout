@@ -7,7 +7,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	hs "ch4.4-1/helloservice"
+	hs "ch4复合数据类型.4-1/helloservice"
 )
 
 func main() {

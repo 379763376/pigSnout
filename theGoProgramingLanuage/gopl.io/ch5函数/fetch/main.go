@@ -46,7 +46,7 @@ func main() {
 	for _, url := range os.Args[1:] {
 		local, n, err := fetch(url)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch %s: %v\n", url, err)
+			fmt.Fprintf(os.Stderr, "fetch获取URL %s: %v\n", url, err)
 			continue
 		}
 		fmt.Fprintf(os.Stderr, "%s => %s (%d bytes).\n", url, local, n)

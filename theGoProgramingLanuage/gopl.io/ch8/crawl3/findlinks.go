@@ -35,7 +35,7 @@ func main() {
 	// Add command-line arguments to worklist.
 	go func() { worklist <- os.Args[1:] }()
 
-	// Create 20 crawler goroutines to fetch each unseen link.
+	// Create 20 crawler goroutines to fetch获取URL each unseen link.
 	for i := 0; i < 20; i++ {
 		go func() {
 			for link := range unseenLinks {

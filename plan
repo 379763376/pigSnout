@@ -1,0 +1,25 @@
+•“对围棋编程语言、范式、结构和习惯用法有丰富的知识
+了解常见的Goroutine和channel模式
+•全面使用Go框架和工具的经验，包括:
+•依赖管理工具，如Godep、Sltr等。
+•Go的模板语言
+•Go的代码生成工具，比如Stringer
+•流行的Go web框架，比如Revel
+•路由器包，如Gorilla Mux
+•能够写出干净有效的Godoc评论
+
+• Golang.
+• Goroutine
+• Godep
+• Sltr
+• Stringer
+• Revel
+• Gorilla Mux
+
+knowledge of API gateway like Apige
+
+Go's code generation tools, such as Stringer
+Router packages, such as Gorilla Mux
+• Web service protocols, such as SOAP or REST
+
+Beehive

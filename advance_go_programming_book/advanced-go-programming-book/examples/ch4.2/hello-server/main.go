@@ -5,7 +5,7 @@ import (
 	"net"
 	"net/rpc"
 
-	pb "gobook.examples/ch4-02-proto/hello.pb"
+	pb "chai2010.cn/gobook/examples/ch4.2/hello.pb"
 )
 
 type HelloService struct{}

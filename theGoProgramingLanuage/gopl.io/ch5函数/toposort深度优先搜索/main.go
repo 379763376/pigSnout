@@ -3,7 +3,7 @@
 
 // See page 136.
 
-// The toposort program prints the nodes of a DAG in topological order.
+// The toposort深度优先搜索 program prints the nodes of a DAG in topological order.
 package main
 
 import (

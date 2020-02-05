@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	pb "ch4.4-3/pubsubservice"
+	pb "ch4复合数据类型.4-3/pubsubservice"
 )
 
 func main() {

@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	hs "ch4.4-2/HelloService"
+	hs "ch4复合数据类型.4-2/HelloService"
 )
 
 type HelloServiceImpl struct{}

@@ -1,7 +1,7 @@
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
 // License: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-package treesort_test
+package treesort结构体_二叉树_数组排序_test
 
 import (
 	"math/rand"

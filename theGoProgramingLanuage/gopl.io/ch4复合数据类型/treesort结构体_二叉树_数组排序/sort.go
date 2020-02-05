@@ -3,8 +3,8 @@
 
 // See page 101.
 
-// Package treesort provides insertion sort using an unbalanced binary tree.
-package treesort
+// Package treesort结构体_二叉树_数组排序 provides insertion sort using an unbalanced binary tree.
+package treesort结构体_二叉树_数组排序
 
 //!+
 type tree struct {
