@@ -51,3 +51,18 @@ Protobuf 保证RPC的接口规范和安全
 Protobuf 编码技术 通过成员的唯一编号来绑定对应的数据
 最终生成的Go结构体可以自由采用JSON或gob等编码格式
 go安装插件protoc-gen-go实现protobuf生成相应的GO代码，目前protoc编译器不支持Go语言
+
+为了更安全的RPC接口，增加了许多代码 维护带来了空难
+采用protobuf定义与语言无关的RPC服务接口：
+
+6.定制代码生成插件
+proto文件定义RPC服务
+protoc编译器使用指定插件生成RPC服务代码
+protoc-gen-go内置了一个grpc插件，可以针对gRPC生成代码
+
+插件查找顺序 先是protoc 再是protoc-gen-xxx
+如若找不到只能生成message相关的代码
+
+基于grpc定制开发自己的插件netrpcPlugin,为标准库RPC框架生成代码
+
+
