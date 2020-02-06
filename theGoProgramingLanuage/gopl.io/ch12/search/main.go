@@ -44,6 +44,7 @@ func main() {
 //!+output
 $ go build gopl.io/ch12/search
 $ ./search &
+<<<<<<< HEAD
 $ ./fetch 'http://localhost:12345/search'
 Search: {Labels:[] MaxResults:10 Exact:false}
 $ ./fetch 'http://localhost:12345/search?l=golang&l=programming'
@@ -55,6 +56,19 @@ Search: {Labels:[golang programming] MaxResults:10 Exact:true}
 $ ./fetch 'http://localhost:12345/search?q=hello&x=123'
 x: strconv.ParseBool: parsing "123": invalid syntax
 $ ./fetch 'http://localhost:12345/search?q=hello&max=lots'
+=======
+$ ./fetch获取URL 'http://localhost:12345/search'
+Search: {Labels:[] MaxResults:10 Exact:false}
+$ ./fetch获取URL 'http://localhost:12345/search?l=golang&l=programming'
+Search: {Labels:[golang programming] MaxResults:10 Exact:false}
+$ ./fetch获取URL 'http://localhost:12345/search?l=golang&l=programming&max=100'
+Search: {Labels:[golang programming] MaxResults:100 Exact:false}
+$ ./fetch获取URL 'http://localhost:12345/search?x=true&l=golang&l=programming'
+Search: {Labels:[golang programming] MaxResults:10 Exact:true}
+$ ./fetch获取URL 'http://localhost:12345/search?q=hello&x=123'
+x: strconv.ParseBool: parsing "123": invalid syntax
+$ ./fetch获取URL 'http://localhost:12345/search?q=hello&max=lots'
+>>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 max: strconv.ParseInt: parsing "lots": invalid syntax
 //!-output
 */

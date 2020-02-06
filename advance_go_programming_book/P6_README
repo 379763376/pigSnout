@@ -1,0 +1,42 @@
+数据中心 id数据中心提供API
+机器 id可以存到mysql 初始化时持久化存储到本地,或直接写死到机器的配置文件中
+
+github.com/bwmarrin/snowflake
+sonyflake
+
+进程锁：代码段加lock,一个任务多次执行
+一个任务单一执行：trylock失败就不再执行 使用channel+select,此做法存在大量的goroutine抢占锁 活锁
+
+分布式抢占实现：
+github.com/go-redis/redis   redis setnx 请求到达redis时间决定是否能拿到锁,简单 网络原因会有数据丢失的可能
+github.com/samuel/go-zookeeper/zk  一致协议的锁 分布式阻塞锁 不适合高频次时间短的抢锁，基于zk的
+github.com/zieckey/etcdsync 实现和和zk一样的功能，etcd实现的方式和zk不同
+
+选择锁：单机锁 > 简单锁(redis) > 一致性锁（zk/etcd）> 基于业务使用多个zk/etcd 降低延迟 提供吞吐量
+
+延时任务处理机制：
+定时器、任务分发、exactly once
+
+关系型数据库做一些OLTP 及时性或者秒级的 如果做一些多维度查询和匹配就需要合理的创建索引
+用es代替数据库 执行模糊查询
+gopkg.in/olivere/elastic.v3
+github.com/cch123/elasticsql es-dsl和sql之间的转换
+数据写入到关系型数据库再同步到es
+
+shuffle算法 循环 从n个元素任意选一个放在末尾，第二次从n-1中选一个放到末尾
+fisher-yates算法 rand.Perm(n)实现了该算法
+
+长连接中的随机：既要保证随机，也要保证长连接
+
+配置管理:
+到下游的流量限制 防止频繁的请求超出下游的承载能力 服务端堆积一些数据 设置时间和总量阈值
+使用etcd存储配置文件，
+
+github.com/gocolly/colly  爬虫框架
+分布式爬虫：
+任务分发 执行
+nats消息中间件 高性能分布式消息队列 高并发高吞吐量消息分发
+nats是广播性质 可以指定消费者queue
+
+
+
