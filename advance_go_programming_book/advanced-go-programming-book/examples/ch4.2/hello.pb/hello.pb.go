@@ -3,9 +3,15 @@
 
 package hello
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
+import (
+	context "context"
+	fmt "fmt"
+	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -16,7 +22,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type String struct {
 	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
@@ -29,16 +35,17 @@ func (m *String) Reset()         { *m = String{} }
 func (m *String) String() string { return proto.CompactTextString(m) }
 func (*String) ProtoMessage()    {}
 func (*String) Descriptor() ([]byte, []int) {
-	return fileDescriptor_hello_d230db15bc3b8c9b, []int{0}
+	return fileDescriptor_61ef911816e0a8ce, []int{0}
 }
+
 func (m *String) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_String.Unmarshal(m, b)
 }
 func (m *String) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_String.Marshal(b, m, deterministic)
 }
-func (dst *String) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_String.Merge(dst, src)
+func (m *String) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_String.Merge(m, src)
 }
 func (m *String) XXX_Size() int {
 	return xxx_messageInfo_String.Size(m)
@@ -60,9 +67,9 @@ func init() {
 	proto.RegisterType((*String)(nil), "hello.String")
 }
 
-func init() { proto.RegisterFile("hello.proto", fileDescriptor_hello_d230db15bc3b8c9b) }
+func init() { proto.RegisterFile("hello.proto", fileDescriptor_61ef911816e0a8ce) }
 
-var fileDescriptor_hello_d230db15bc3b8c9b = []byte{
+var fileDescriptor_61ef911816e0a8ce = []byte{
 	// 103 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xce, 0x48, 0xcd, 0xc9,
 	0xc9, 0xd7, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x05, 0x73, 0x94, 0xe4, 0xb8, 0xd8, 0x82,
@@ -71,4 +78,84 @@ var fileDescriptor_hello_d230db15bc3b8c9b = []byte{
 	0xa2, 0xb2, 0xcc, 0xe4, 0x54, 0x21, 0x55, 0x2e, 0x56, 0x30, 0x5f, 0x88, 0x57, 0x0f, 0x62, 0x1a,
 	0x44, 0xb7, 0x14, 0x2a, 0x37, 0x89, 0x0d, 0x6c, 0x89, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x15,
 	0xe8, 0xb1, 0xcc, 0x73, 0x00, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// HelloServiceClient is the client API for HelloService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type HelloServiceClient interface {
+	Hello(ctx context.Context, in *String, opts ...grpc.CallOption) (*String, error)
+}
+
+type helloServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewHelloServiceClient(cc *grpc.ClientConn) HelloServiceClient {
+	return &helloServiceClient{cc}
+}
+
+func (c *helloServiceClient) Hello(ctx context.Context, in *String, opts ...grpc.CallOption) (*String, error) {
+	out := new(String)
+	err := c.cc.Invoke(ctx, "/hello.HelloService/Hello", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// HelloServiceServer is the server API for HelloService service.
+type HelloServiceServer interface {
+	Hello(context.Context, *String) (*String, error)
+}
+
+// UnimplementedHelloServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedHelloServiceServer struct {
+}
+
+func (*UnimplementedHelloServiceServer) Hello(ctx context.Context, req *String) (*String, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Hello not implemented")
+}
+
+func RegisterHelloServiceServer(s *grpc.Server, srv HelloServiceServer) {
+	s.RegisterService(&_HelloService_serviceDesc, srv)
+}
+
+func _HelloService_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(String)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HelloServiceServer).Hello(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hello.HelloService/Hello",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HelloServiceServer).Hello(ctx, req.(*String))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _HelloService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "hello.HelloService",
+	HandlerType: (*HelloServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Hello",
+			Handler:    _HelloService_Hello_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "hello.proto",
 }

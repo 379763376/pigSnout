@@ -1,0 +1,149 @@
+RPC 远程过程调用
+Protobuf 接口交流语言
+1.PRC
+RPC和IPC
+RPC分布式系统中不同节点间流行的通信方式
+RPC是基于net构建的
+
+RPC方法规范：
+服务端：
+定义结构体和结构体方法
+主函数中注册结构体类型对象为RPC服务，创建一个监听器启动阻塞等待接收任务
+客户端：
+rpc.Dial拨号
+调用远程方法
+
+2.引进RPC中间接口规范
+把客户端的拨号抽取为函数，客户端API调用抽取为函数，
+服务端把注册抽取为函数
+
+3.基于json跨语言的RPC
+rpc库采用gob编码 go特有的
+
+net/rpc/jsonrpc 实现基于json的跨语言的RPC
+服务端：
+rpc.ServeCodec(jsonrpc.NewServeCodec(conn))
+客户端：
+rpc.NewClientWithCodec(jsonrpc.NewClientCodec(conn))  基于该链接建立针对客户端的json编解码器
+直接访问ip+port会返回API信息
+指定调用API返回具体操作结果
+
+请求和返回参数三部分:
+    客户端维护一个调用编号不是必填 go语言的RPC框架支持异步调用，调用顺序和结果顺序不一致 通过id来识别对应的调用
+    result为返回结果，
+    如果出错error
+
+4.基于http跨语言的RPC
+内置框架已支持http协议上的RPC,但是采用gob协议
+在http协议上提供jsonrpc服务
+服务端:
+注册RPC服务
+启动一个http服务并监听，重新封装conn对象，并使用rpc.ServeRequest(jsonrpc.NewServerCodec(conn)) 请求处理
+这样就可以外层是http 内层干活的还是rpc
+
+5.Protobuf
+Protobuf 保证RPC的接口规范和安全
+Protobuf 编码技术 通过成员的唯一编号来绑定对应的数据
+数据描述语言：有工具可以帮助生成代码实现结构化数据序列化
+接口规范描述语言：设计安全的跨语言RPC接口的基础工具
+
+最终生成的Go结构体可以自由采用JSON或gob等编码格式
+go安装插件protoc-gen-go实现protobuf生成相应的GO代码，目前protoc编译器不支持Go语言
+
+为了更安全的RPC接口，增加了许多代码 维护带来了空难
+采用protobuf定义与语言无关的RPC服务接口：
+
+6.定制代码生成插件
+proto文件定义RPC服务
+protoc编译器使用指定插件生成RPC服务代码
+protoc-gen-go内置了一个grpc插件，可以针对gRPC生成代码
+
+插件查找顺序 先是protoc 再是protoc-gen-xxx
+如若找不到只能生成message相关的代码
+
+基于grpc定制开发自己的插件netrpcPlugin,为标准库RPC框架生成代码
+
+配置模板文件，用于根据proto文件中方法生成RPC中间接口规范
+
+7.RPC库
+Client.Call 同步阻塞调用，内部有一个异步方法Client.Go
+Client.Go异步调用服务返回的对象会包含输入参数和返回值
+
+8.监控接口 实现对某些状态的监控
+服务端状态更改时会调用所有的过滤器
+客户端和服务端除了服务调用还在后台起了一个goroutine作为通讯，服务端的watch方法会返回值
+
+9.反向RPC
+先从内网访问外网，再基于TCP链接向外网提供RPC服务
+服务端拨号请求客户端
+客户端接收到连接后通过管道实现后台服务监听goroutine和主程序请求处理函数互相通信
+
+10.上下文信息
+通过上下文，针对不同客户端提供定制化的RPC服务
+在服务端类型中添加属性，为每次的调用注册独立的服务
+当客户端调用时，服务端根据不同的conn执行不同的语法块或者校验
+
+11.gRPC
+gRPC基于HTTP/2协议设计，可以基于HTTP/2链接提供多个服务
+基于grpc插件生成的接口代码包含服务端和客户端接口
+上下文支持
+gRPC生成的接口并不支持异步调用
+可以在多个Goroutine之间安全地共享gRPC底层的HTTP/2链接
+通过在另一个Goroutine阻塞调用的方式模拟异步调用
+
+12.gRPC流
+解决上传下载大流量 和 时间不确定的订阅和发布模式
+在服务中增加一个支持双向流的Channel方法
+proto文件中:stream关键字 指定启用流特性，String是接收和返回的流
+接口文件中多了关于 服务端和客户端流的接口和接口方法Send、Recv的实现类型
+服务端代码：实现服务接口中的方法,在channel方法中实现对stream中的数据接收和发送
+客户端：调用函数得到stream对象，启动goroutine接收和发送数据
+发送和接收操作不需要一一对应
+
+13.发布和订阅模式pubsub
+基于grpc的流特性
+基于docker项目中提供了一个pubsub的极简实现
+构建一个跨网络的发布和订阅系统
+proto文件：定义发布和订阅方法和接收返回参数，发布是普通的方法，订阅是单向的消息流
+接口文件中：服务端多了订阅消息流，服务端是send方法，客户端是recv方法
+服务端：定义服务类型，实现发布和订阅方法
+
+14.gRPC证书认证
+没有启用证书的gRPC在客户端是明文通信，存在被任何第三方监听的风险
+服务器启用TLS加密特性
+
+简单实现：
+服务器和客户端通过openssl都生成私钥和证书
+代码：
+服务端：创建grpcserver时使用证书对象
+客户端：创建客户端证书对象时使用服务端证书和服务端名字，拨号时使用证书对象作为可选参数传递
+缺点：以上方式需要提前把证书给了客户端，证书可能被截取篡改
+
+增强实现：
+一个根证书对服务端和客户端签名，客户端和服务端接收到对方的证书后通过根证书验证根证书的有效性
+生成密钥ca.key，生成自签名证书ca.crt（根证书）
+服务端通过签名请求文件csr,生成签名证书crt
+（可选）客户端通过签名请求文件csr,生成签名证书crt
+代码：
+客户端需要：证书client.crt、密钥client.key、根证书ca.crt、服务器名字，
+首次请求服务器获取服务器证书，CA证书对服务器的证书验证
+（可选服务端也对客户端签名认证）
+
+15.token认证
+基于证书认证是对gRPC链接认证
+基于token对gPRC方法调用认证
+代码实现要求：
+实现接口PerRPCCredentials 获取认证需要的信息和底层使用安全链接
+客户端：拨号时传入token信息参数
+服务端：定义服务的类型 包含认证字段，该字段类型的Auth方法实现校验
+
+16.截取器
+grpc.UnaryInterceptor 普通方法拦截，参数需要传入一个函数 该函数实现普通方法的截取器
+grpc.StreamInterceptor 流方法
+拦截器函数
+github.com/grpc-ecosystem/go-grpc-middleware  截取器实现了链式截取器的支持
+代码：
+服务端：创建grpcserver时作为参数传入filter拦截器
+
+17.grpc和web服务共存
+

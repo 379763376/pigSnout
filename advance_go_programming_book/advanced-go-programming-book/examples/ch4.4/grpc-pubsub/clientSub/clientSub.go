@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	pb "gobook.examples/ch4复合数据类型-04-grpc/grpc-pubsub/pubsubservice"
+	pb "chai2010.cn/gobook/examples/ch4.4/grpc-pubsub/pubsubservice"
 )
 
 func main() {
