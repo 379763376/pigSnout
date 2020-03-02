@@ -1,0 +1,3 @@
+静态文件/夹
+~/go_workspace/src/pigSnout/go_gin/router_static$ go build -o router_static && ./router_static
+
