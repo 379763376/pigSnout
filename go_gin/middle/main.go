@@ -19,12 +19,12 @@ func main() {
 	//	c.String(200,"%s",name)
 	//})
 	//2.自定义中间件 Ip白名单
-	//r := gin.Default()
-	//r.Use(IPAuthMiddleware())
-	//r.GET("/test", func(c *gin.Context) {
-	//	name := c.DefaultQuery("name","d_n")
-	//	c.String(200,"%s",name)
-	//})
+	r := gin.Default()
+	r.Use(IPAuthMiddleware())
+	r.GET("/test", func(c *gin.Context) {
+		name := c.DefaultQuery("name","d_n")
+		c.String(200,"%s",name)
+	})
 
 	r.Run()
 }
