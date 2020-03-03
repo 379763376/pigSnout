@@ -1,0 +1,47 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> main.main.func1 (3 handlers)
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+
+
+[31m2020/03/03 15:32:34 [Recovery] 2020/03/03 - 15:32:34 panic recovered:
+GET /test?name=zs HTTP/1.1
+Host: localhost:8080
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cache-Control: max-age=0
+Connection: keep-alive
+Cookie: _ga=GA1.1.1589280369.1573725323
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+
+
+test panic
+E:/goWrk/src/pigSnout/go_gin/middle/main.go:20 (0x8ffaf7)
+	main.func1: panic("test panic")
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/context.go:147 (0x8ea0d1)
+	(*Context).Next: c.handlers[c.index](c)
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/recovery.go:83 (0x8fdeba)
+	RecoveryWithWriter.func1: c.Next()
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/context.go:147 (0x8ea0d1)
+	(*Context).Next: c.handlers[c.index](c)
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/logger.go:241 (0x8fcfc7)
+	LoggerWithConfig.func1: c.Next()
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/context.go:147 (0x8ea0d1)
+	(*Context).Next: c.handlers[c.index](c)
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/gin.go:403 (0x8f42d0)
+	(*Engine).handleHTTPRequest: c.Next()
+E:/goWrk/pkg/mod/github.com/gin-gonic/gin@v1.5.0/gin.go:364 (0x8f39b4)
+	(*Engine).ServeHTTP: engine.handleHTTPRequest(c)
+C:/Go/src/net/http/server.go:2802 (0x6bec3a)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+C:/Go/src/net/http/server.go:1890 (0x6ba40b)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+C:/Go/src/runtime/asm_amd64.s:1357 (0x45c0f0)
+	goexit: BYTE	$0x90	// NOP
+[0m
+[GIN] 2020/03/03 - 15:32:34 | 500 |    119.6786ms |             ::1 | GET      /test?name=zs
