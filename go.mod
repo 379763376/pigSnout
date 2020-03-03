@@ -28,5 +28,6 @@ require (
 	google.golang.org/appengine v1.6.5 // indirect
 	google.golang.org/genproto v0.0.0-20190927181202-20e1ac93f88c
 	google.golang.org/grpc v1.26.0
+	gopkg.in/go-playground/validator.v8 v8.18.2
 	gopl.io v0.0.0-20191021194416-1e9cbf3a0aca
 )
