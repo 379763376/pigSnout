@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go_code/chapter11/encapexercise/model"
+	"pigSnout/go_hanshunping/chapter11/encapexercise/model"
 )
 
 func main() {

@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"theGoProgramingLanuage/gopl.io/ch4/github"
+	"pigSnout/go_base/ch4/github"
 )
 
 //!+

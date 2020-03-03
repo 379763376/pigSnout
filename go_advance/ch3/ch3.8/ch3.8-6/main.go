@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"gobook/ch3.8-6/gls"
+	"pigSnout/go_advance/ch3/ch3.8/ch3.8-6/gls"
 )
 
 func main() {

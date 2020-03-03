@@ -8,7 +8,7 @@ import "C"
 import (
 	"fmt"
 
-	_"gobook.examples/ch2-09-so-and-lib/make-clib-from-multi-pkg/number"
+	_"pigSnout/go_advance/ch2/ch2.9/make-clib-from-multi-pkg/number"
 )
 
 func main() {

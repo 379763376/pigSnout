@@ -2,25 +2,18 @@ package main
 
 import (
 	"fmt"
-	"pigSnout/hanshunping/customerManage/model"
-	"pigSnout/hanshunping/customerManage/service"
+	"pigSnout/go_hanshunping/customerManage/service"
+	"pigSnout/go_hanshunping/customerManage/model"
 )
 
 type customerView struct {
 
 	//定义必要字段
-<<<<<<< HEAD
 	key string //接收用户输入...
 	loop bool  //表示是否循环的显示主菜单
 	//增加一个字段customerService
 	customerService *service.CustomerService
 
-=======
-	key  string //接收用户输入...
-	loop bool   //表示是否循环的显示主菜单
-	//增加一个字段customerService
-	customerService *service.CustomerService
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 }
 
 //显示所有的客户信息
@@ -90,11 +83,7 @@ func (this *customerView) delete() {
 	}
 }
 
-<<<<<<< HEAD
 //退出软件 
-=======
-//退出软件
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 func (this *customerView) exit() {
 
 	fmt.Println("确认是否退出(Y/N)：")
@@ -117,11 +106,7 @@ func (this *customerView) exit() {
 func (this *customerView) mainMenu() {
 
 	for {
-<<<<<<< HEAD
 		
-=======
-
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 		fmt.Println("-----------------客户信息管理软件-----------------")
 		fmt.Println("                 1 添 加 客 户")
 		fmt.Println("                 2 修 改 客 户")
@@ -132,7 +117,6 @@ func (this *customerView) mainMenu() {
 
 		fmt.Scanln(&this.key)
 		switch this.key {
-<<<<<<< HEAD
 			case "1" :
 				this.add()
 			case "2" :
@@ -145,20 +129,6 @@ func (this *customerView) mainMenu() {
 				this.exit()
 			default :
 				fmt.Println("你的输入有误，请重新输入...")
-=======
-		case "1":
-			this.add()
-		case "2":
-			fmt.Println("修 改 客 户")
-		case "3":
-			this.delete()
-		case "4":
-			this.list()
-		case "5":
-			this.exit()
-		default:
-			fmt.Println("你的输入有误，请重新输入...")
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 		}
 
 		if !this.loop {
@@ -169,7 +139,6 @@ func (this *customerView) mainMenu() {
 	fmt.Println("你退出了客户关系管理系统...")
 }
 
-<<<<<<< HEAD
 
 
 func main() {
@@ -177,21 +146,10 @@ func main() {
 	customerView := customerView{
 		key : "",
 		loop : true,
-=======
-func main() {
-	//在main函数中，创建一个customerView,并运行显示主菜单..
-	customerView := customerView{
-		key:  "",
-		loop: true,
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 	}
 	//这里完成对customerView结构体的customerService字段的初始化
 	customerView.customerService = service.NewCustomerService()
 	//显示主菜单..
 	customerView.mainMenu()
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab

@@ -1,28 +1,15 @@
 package main
-<<<<<<< HEAD
 import (
 	"fmt"
 	"os" 
 )
-=======
-
-import (
-	"fmt"
-	"os"
-)
-
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 func main() {
 	//打开文件
 	//概念说明: file 的叫法
 	//1. file 叫 file对象
 	//2. file 叫 file指针
 	//3. file 叫 file 文件句柄
-<<<<<<< HEAD
 	file , err := os.Open("d:/test.txt")
-=======
-	file, err := os.Open("d:/test.txt")
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 	if err != nil {
 		fmt.Println("open file err=", err)
 	}
@@ -33,8 +20,4 @@ func main() {
 	if err != nil {
 		fmt.Println("close file err=", err)
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab

@@ -1,8 +1,4 @@
 package main
-<<<<<<< HEAD
-=======
-
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 import (
 	"fmt"
 )
@@ -10,13 +6,8 @@ import (
 func main() {
 
 	intChan := make(chan int, 3)
-<<<<<<< HEAD
 	intChan<- 100
 	intChan<- 200
-=======
-	intChan <- 100
-	intChan <- 200
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 	close(intChan) // close
 	//这是不能够再写入数到channel
 	//intChan<- 300
@@ -25,18 +16,11 @@ func main() {
 	n1 := <-intChan
 	fmt.Println("n1=", n1)
 
-<<<<<<< HEAD
 
 	//遍历管道
 	intChan2 := make(chan int, 100)
 	for i := 0; i < 100; i++ {
 		intChan2<- i * 2  //放入100个数据到管道
-=======
-	//遍历管道
-	intChan2 := make(chan int, 100)
-	for i := 0; i < 100; i++ {
-		intChan2 <- i * 2 //放入100个数据到管道
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 	}
 
 	//遍历管道不能使用普通的 for 循环
@@ -50,9 +34,5 @@ func main() {
 		fmt.Println("v=", v)
 	}
 
-<<<<<<< HEAD
 
 }
-=======
-}
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab

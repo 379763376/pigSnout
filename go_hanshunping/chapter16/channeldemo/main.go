@@ -1,8 +1,4 @@
 package main
-<<<<<<< HEAD
-=======
-
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 import (
 	"fmt"
 )
@@ -17,7 +13,6 @@ func main() {
 	//2. 看看intChan是什么
 	fmt.Printf("intChan 的值=%v intChan本身的地址=%p\n", intChan, &intChan)
 
-<<<<<<< HEAD
 
 	//3. 向管道写入数据
 	intChan<- 10
@@ -28,16 +23,6 @@ func main() {
 	<-intChan
 	intChan<- 98//注意点, 当我们给管写入数据时，不能超过其容量
 
-=======
-	//3. 向管道写入数据
-	intChan <- 10
-	num := 211
-	intChan <- num
-	intChan <- 50
-	// //如果从channel取出数据后，可以继续放入
-	<-intChan
-	intChan <- 98 //注意点, 当我们给管写入数据时，不能超过其容量
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 
 	//4. 看看管道的长度和cap(容量)
 	fmt.Printf("channel len= %v cap=%v \n", len(intChan), cap(intChan)) // 3, 3
@@ -45,15 +30,9 @@ func main() {
 	//5. 从管道中读取数据
 
 	var num2 int
-<<<<<<< HEAD
 	num2 = <-intChan 
 	fmt.Println("num2=", num2)
 	fmt.Printf("channel len= %v cap=%v \n", len(intChan), cap(intChan))  // 2, 3
-=======
-	num2 = <-intChan
-	fmt.Println("num2=", num2)
-	fmt.Printf("channel len= %v cap=%v \n", len(intChan), cap(intChan)) // 2, 3
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
 
 	//6. 在没有使用协程的情况下，如果我们的管道数据已经全部取出，再取就会报告 deadlock
 
@@ -62,12 +41,6 @@ func main() {
 
 	//num5 := <-intChan
 
-<<<<<<< HEAD
 	fmt.Println("num3=", num3, "num4=", num4/*, "num5=", num5*/)
 
 }
-=======
-	fmt.Println("num3=", num3, "num4=", num4 /*, "num5=", num5*/)
-
-}
->>>>>>> 34c4b0b7b2d411ca07c05d09bb616838a7be8dab
