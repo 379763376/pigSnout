@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println("start server... 在8888端口上监听..")
+	fmt.Println("c1_start server... 在8888端口上监听..")
 	//监听8888,等待客户端连接
 	listen, err := net.Listen("tcp", "0.0.0.0:8888")
 	if err != nil {
@@ -51,7 +51,7 @@ import (
 )
 
 func main() {
-	fmt.Println("start server... 在8888端口上监听..")
+	fmt.Println("c1_start server... 在8888端口上监听..")
 	//监听8888,等待客户端连接
 	listen, err := net.Listen("tcp", "0.0.0.0:8888")
 	if err != nil {

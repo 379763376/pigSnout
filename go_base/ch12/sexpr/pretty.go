@@ -23,7 +23,7 @@ func MarshalIndent(v interface{}) ([]byte, error) {
 const margin = 80
 
 type token struct {
-	kind rune // one of "s ()" (string, blank, start, end)
+	kind rune // one of "s ()" (string, blank, c1_start, end)
 	str  string
 	size int
 }

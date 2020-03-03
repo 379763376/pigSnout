@@ -20,7 +20,7 @@ func main() {
 	start := time.Now()
 	ch := make(chan string)
 	for _, url := range os.Args[1:] {
-		go fetch(url, ch) // start a goroutine
+		go fetch(url, ch) // c1_start a goroutine
 	}
 	for range os.Args[1:] {
 		fmt.Println(<-ch) // receive from channel ch

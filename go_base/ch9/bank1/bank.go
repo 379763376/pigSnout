@@ -25,7 +25,7 @@ func teller() {
 }
 
 func init() {
-	go teller() // start the monitor goroutine
+	go teller() // c1_start the monitor goroutine
 }
 
 //!-

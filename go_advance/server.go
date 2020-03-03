@@ -55,7 +55,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(httpAddr, mainHandler))
 }
 
-// waitServer waits some time for the http Server to start
+// waitServer waits some time for the http Server to c1_start
 // serving url. The return value reports whether it starts.
 func waitServer(url string) bool {
 	tries := 20
@@ -89,13 +89,13 @@ func getLocalIP() string {
 // startBrowser tries to open the URL in a browser, and returns
 // whether it succeed.
 func startBrowser(url string) bool {
-	// try to start the browser
+	// try to c1_start the browser
 	var args []string
 	switch runtime.GOOS {
 	case "darwin":
 		args = []string{"open"}
 	case "windows":
-		args = []string{"cmd", "/c", "start"}
+		args = []string{"cmd", "/c", "c1_start"}
 	default:
 		args = []string{"xdg-open"}
 	}

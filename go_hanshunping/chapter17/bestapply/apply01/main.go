@@ -27,7 +27,7 @@ func (s Monster) Set(name string, age int, score float32, sex string) {
 
 //方法，显示s的值
 func (s Monster) Print() {
-	fmt.Println("---start~----")
+	fmt.Println("---c1_start~----")
 	fmt.Println(s)
 	fmt.Println("---end~----")
 }
@@ -117,7 +117,7 @@ func (s Monster) Set(name string, age int, score float32, sex string) {
 
 //方法，显示s的值
 func (s Monster) Print() {
-	fmt.Println("---start~----")
+	fmt.Println("---c1_start~----")
 	fmt.Println(s)
 	fmt.Println("---end~----")
 }

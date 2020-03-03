@@ -3,7 +3,7 @@
 
 // See page 130.
 
-// The wait program waits for an HTTP server to start responding.
+// The wait program waits for an HTTP server to c1_start responding.
 package main
 
 import (

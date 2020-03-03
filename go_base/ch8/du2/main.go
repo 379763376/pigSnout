@@ -22,7 +22,7 @@ import (
 var verbose = flag.Bool("v", false, "show verbose progress messages")
 
 func main() {
-	// ...start background goroutine...
+	// ...c1_start background goroutine...
 
 	//!-
 	// Determine the initial directories.
