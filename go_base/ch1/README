@@ -18,17 +18,22 @@ strings.Join(os.Args[1:], " ")
 查找重复行
 3.1.读取输入，行内容为key，遇到重复++
 make(map[string]int) 内置函数创建空map
-bufio.NewScanner(os.Stdin)
+bufio.NewScanner(os.Stdin) 标准输入作为输入
+
 3.2.读取文件作为输入，循环输入变量，打开读取文件作为函数输入
 f, err := os.Open(arg) 读取被打开的文件，返回两个值
 f.Close()
 fmt.Fprintf(os.Stderr, "dup2: %v\n", err) 标准错误输出到writes，Printf写出到标准输出
 bufio.NewScanner(f) 文件作为输入
 func countLines(f *os.File, counts map[string]int)接收文件作为输入
-3.3.一次性读取到内存再操作：文件都打开放入map再执行打印
-data, err := ioutil.ReadFile(filename)
+
+3.3.一次性读取一个文件到内存再操作：文件都打开放入map再执行打印
+data, err := ioutil.ReadFile(filename) 返回一个切片
 continue
 for _, line := range strings.Split(string(data), "\n")
+
+*io.File的Read和Write低级函数
+bufio 、io/ioutil高级函数
 
 4.lissajous案例：
 gif动画
