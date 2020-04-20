@@ -1,6 +1,8 @@
-Ken Thompson和Dennis M. Ritchie-->UNIX 系统
+Ken Thompson和Dennis M. Ritchie-->UNIX 系统 (70年代)
 Dennis M. Ritchie --> C语言
-Ken Thompson和Rob Pike和Robert Griesemer-->Go语言
+Ken Thompson和Rob Pike和Robert Griesemer-->Go语言 (2009)
 Brian W. Kernighan和Dennis M. Ritchie-->《The C Programming Language》
 Alan A. A. Donovan和K&R中的Brian W. Kernighan --> 《The Go Programming Language》
 
+
+多核和网络化环境下越来越复杂的编程问题

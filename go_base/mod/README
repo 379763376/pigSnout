@@ -1,0 +1,34 @@
+mod 可以把工程从gopath移出来
+1、go mod init
+创建mod项目
+2、go mod graph
+只是打印依赖
+3、go mod download
+在gopath的pkg下会有mod依赖文件
+4、go mod tidy
+整理
+5、go mod verify
+验证依赖
+6、go mod why
+为什么会被导入进来
+go mod why -m xxx
+7、go mod edit
+go mod edit -fmt 格式化go.mod文件
+go mod edit -module xxx 更改go.mod module名字
+go mod edit -require 添加依赖
+go mod edit -exclude 排除依赖 因为有些版本问题，排除后go get也无法下载
+go mod edit -dropexclude 删除之前排除记录
+go mod edit -replace 当下载一些包无法下载 用其他包替换，比如官方下载不到 但是可以在github下载
+go mod edit -go=version 指定go使用的版本 go.mod中
+go mod edit print json 打印依赖
+依赖项目@版本号
+8、go mod vendor
+devops会用到
+
+go list -m all
+go get
+go build
+go mod edit require
+go mod download
+
+
