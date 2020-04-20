@@ -91,23 +91,60 @@ http.HandleFunc("/", handler)
 log.Fatal(http.ListenAndServe("localhost:8000", nil))
 func handler(w http.ResponseWriter, r *http.Request) 处理请求
 fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path) 标准输出
-go run src/gopl.io/ch1/server1/main.go & 后台执行
+后台运行
+$ go run src/gopl.io/ch1/server1/main.go &
+通过fetch调用
+$ ./fetch http://localhost:8000
 7.2.全局计数器:
 http.HandleFunc("/count", counter)
+保证每次修改变量的最多只能有一个goroutine
 mu.Lock()
 fmt.Fprintf(w, "Count %d\n", count)
 mu.Unlock()
+服务器每一次接收请求处理时都会另起一个goroutine，这样服务器就可以同一时间处理多个请求。
+log.Fatal(http.ListenAndServe("localhost:8000", nil
 7.3.
 fmt.Fprintf(w, "%s %s %s\n", r.Method, r.URL, r.Proto)
 for k, v := range r.Header
 r.Host
 r.RemoteAddr
-if err := r.ParseForm(); err != nil
+以下两行打印form表单
+if err := r.ParseForm(); err != nil   的变量声明出现在if语句的最前面 可以限制err这个变量的作用域
 for k, v := range r.Form
+
 
 以上程序的不同的类型，最后都输出到标准输出流中
 不同的输出类型，但是都实现了io.Writer接口
 改造把gif输出到web
-handler := func(w http.ResponseWriter, r *http.Request)
-lissajous(w)
+handler := func(w http.ResponseWriter, r *http.Request){
+    lissajous(w)
+}
 http.HandleFunc("/", handler)
+
+8
+语言默认执行完case后的逻辑语句会自动退出,fallthrough语句来覆盖这种默认行为
+switch f(){ case "x": }
+switch{case x>0: } 无tag switch(tagless switch)；这和switch true是等价的
+像for和if控制语句一样，switch也可以紧跟一个简短的变量声明，一个自增表达式、赋值语句，或者一个函数调用
+相应的位置加上label，根据我们的想法来continue和break任意循环
+
+命名类型
+
+指针 直接存储了变量的内存地址的数据类型
+指针是可见的内存地址，&操作符可以返回一个变量的内存地址，并且*操作符可以获取指针指向的变量内容
+Go语言里没有指针运算，也就是不能像c语言里可以对指针进行加或减操作
+
+方法:方法是和命名类型关联的一类函数
+
+接口:是一种抽象类型,同样的方式来处理不同的固有类型,不用关心它们的具体实现，而只需要关注它们提供的方法
+
+包:
+https://golang.org/pkg
+https://godoc.org
+社区的package
+
+godoc工具
+go doc http.ListenAndServe
+源文件的开头写的注释是这个源文件的文档
+在每一个函数之前写一个说明函数行为的注释也是一个好习惯,些内容会被像godoc这样的工具检测到
+开头的注释一般都是/* ... */

@@ -100,6 +100,7 @@ return words, images, err
     当删除操作执行时,for循环已完成,dir中存储的值等于最后一次迭代的值。这意味着,每次对os.RemoveAll的调用删除的都是相同的目录
     iterationvar案例：执行匿名函数的时候for循环已经执行完了，d的值变成最后一次迭代的值
         引入一个内部变量，初始化外部变量 dir := dir
+
 7.变参函数
     定义： func sum(vals...int) int 在参数列表的最后一个参数类型之前加上省略符号“...”
     传递切片类型： fmt.Println(sum(values...)) 参数已经是切片类型，在最后一个参数后加上省略符

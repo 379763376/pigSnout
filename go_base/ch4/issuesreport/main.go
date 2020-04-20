@@ -11,7 +11,7 @@ import (
 	"os"
 	"text/template"
 	"time"
-	"gopl.io/ch4/github"
+	"pigSnout/go_base/ch4/github"
 )
 
 //!+template
