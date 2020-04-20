@@ -1,3 +1,8 @@
+Go是一门编译型语言
+Go语言原生支持Unicode，它可以处理全世界任何语言的文本
+Go的标准库提供了100多个包 输入、输出、排序以及文本处理
+main 包比较特殊。它定义了一个独立可执行的程序，而不是一个库
+main 里的 main 函 数 也很特殊，它是整个程序执行时的入口
 1.helloworld案例：
 go run
 go build
@@ -8,30 +13,45 @@ gofmt
 goimports
 
 2.echo1案例：
-获取命令行参数
-os.Args 参数从1开始
+os.Args变量是一个字符串（string）的切片（slice）
+os.Args[0], 是命令本身的名字
+os.Args 参数从1开始 os.Args[1:]
+如果省略切片表达式的m或n，会默认传入0或 len(s)
 for initialization; condition; post{}
-for _, arg := range os.Args[1:]
-strings.Join(os.Args[1:], " ")
+for循环的这三个部分每个都可以省略 省略 initialization 和 post ，分号也可以省 略
+for _, arg := range os.Args[1:]  空标识符 （blank identifier），即 _ （也就是下划线）
+以上方案多次赋值给s 开辟新空间 旧空间回收
+strings.Join(os.Args[1:], " ") 简单且高效的解决方案
+fmt.Println(os.Args[1:]) 被放到了一对方括号里。切片都 会被打印成这种格式
+变量会在声明时直接初始化。如果变量没有显 式初始化，则被隐式地赋予其类型的零值（zero value）
+
+
 
 3.dup案例：
 查找重复行
 3.1.读取输入，行内容为key，遇到重复++
 make(map[string]int) 内置函数创建空map
-bufio.NewScanner(os.Stdin) 标准输入作为输入
+input := bufio.NewScanner(os.Stdin) 标准输入作为输入
+input.Scan() 即读入下一行，并移除行末 的换行符；读取的内容可以调用 input.Text() 得到,Scan 函数在读到一行时返回 true ，在 无输入时返回 false
+input.Text()
+fmt.Printf 函数对一些表达式产生格式化输出
+log.Printf 和 fmt.Errorf ，都采用 fmt.Printf 的格式化准则
 
 3.2.读取文件作为输入，循环输入变量，打开读取文件作为函数输入
-f, err := os.Open(arg) 读取被打开的文件，返回两个值
+f, err := os.Open(arg) 第一个值是被打开的文件( *os.File ），其后被 Scanner 读取, 读取被打开的文件，返回两个值
 f.Close()
 fmt.Fprintf(os.Stderr, "dup2: %v\n", err) 标准错误输出到writes，Printf写出到标准输出
 bufio.NewScanner(f) 文件作为输入
 func countLines(f *os.File, counts map[string]int)接收文件作为输入
+continue 语句直接跳到 for 循环的下个迭代开始执行
 
-3.3.一次性读取一个文件到内存再操作：文件都打开放入map再执行打印
+
+3.3.前两个版本以"流”模式读取输入，并根据需要拆分成多个行
+一次性读取全部文件到内存再操作：文件都打开放入map再执行打印
 data, err := ioutil.ReadFile(filename) 返回一个切片
 continue
 for _, line := range strings.Split(string(data), "\n")
-
+bufio.Scanner 、 ioutil.ReadFile 和 ioutil.WriteFile
 *io.File的Read和Write低级函数
 bufio 、io/ioutil高级函数
 
@@ -44,15 +64,14 @@ gif.EncodeAll接收一个io.Writer
 
 5.fetch案例：
 获取url
-resp, err := http.Get(url)
-b, err := ioutil.ReadAll(resp.Body)
-resp.Body.Close()
+resp, err := http.Get(url)           net/http
+b, err := ioutil.ReadAll(resp.Body)  io/ioutil
+resp.Body.Close() 关闭resp的Body流，防止资源泄露
 
 6.fetchall案例：
 并发获取多个url
-定义一个chan,调用并发执行方法，接收管道返回数据
 ch := make(chan string)
-for _, url := range os.Args[1:] 发送
+for _, url := range os.Args[1:] 发送 定义一个chan,调用并发执行方法，接收管道返回数据
 for range os.Args[1:] 接收
 func fetch(url string, ch chan<- string)
 start := time.Now()
@@ -61,6 +80,10 @@ nbytes, err := io.Copy(ioutil.Discard, resp.Body)
 ch <- fmt.Sprintf("while reading %s: %v", url, err) 格式化并返回
 secs := time.Since(start).Seconds()
 ch <- fmt.Sprintf("%.2fs %7d %s", secs, nbytes, url)
+goroutine是一种函数的并发执行方式
+而channel是用来在goroutine之间进行参数传递
+main函数本身也运行在一个goroutine中，而go function则表示创建一个新的goroutine，并在 这个新的goroutine中执行这个函数
+以避免在goroutine异步执行还没有完成时main函数提前退出
 
 7.server web服务
 7.1.

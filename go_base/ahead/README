@@ -1,8 +1,34 @@
+1.发展史：
 Ken Thompson和Dennis M. Ritchie-->UNIX 系统 (70年代)
 Dennis M. Ritchie --> C语言
-Ken Thompson和Rob Pike和Robert Griesemer-->Go语言 (2009)
-Brian W. Kernighan和Dennis M. Ritchie-->《The C Programming Language》
+Ken Thompson和Rob Pike和Robert Griesemer-->Go语言 (2007开发 2009发布)
+Brian W. Kernighan和Dennis M. Ritchie    k&R --> 《The C Programming Language》
 Alan A. A. Donovan和K&R中的Brian W. Kernighan --> 《The Go Programming Language》
 
+2.应用场景
+并发编程 数据抽象 面向对象 自动垃圾收集
+适合编写网络服务相关基础设施
+工具软件和系统软件
+图形图像驱动编程
+移动应用程序开发
+机器学习等诸多领域
+无类型的脚本语言的替代者 更快也更安全  很少会发生意外的类型错误
+
+3.go的设计
+Go项目是在Google公司维护超级复杂的几个软件系统遇到的一些问题的反思
+简洁的设计 才能让一个系统保持稳定、安全和持续的进化
+一个好的改变可以在不破坏原有完整概念的前提下保持自适应
+一个坏的改变则不能达到这个效果，它们仅仅是通过肤浅的和简单的妥协来破坏原有设计的一致性
+
+4.功能
+有：自动垃圾回收、一个包系统、函数作为一等公民、词法作用域、系统调用接口、只读UTF8字符串
+没有：构造函数、析构函数、线程局部存储
+简洁的类型系统 安全性和更好的运行时性能
+内置数据类型和大多数的准库数据结构都经过精心设计而避免显式的初始化或隐式的构造函数，很少的内存分配和内存初始化代码被隐藏在库代码中了
+聚合类型（结构体和数组）可以直接操 作它们的元素，只需要更少的存储空间、更少的内存分配
+指针操作比其他间接操作的 语言也更有效率
+提供了基于CSP的并发特性支持
+GO动态栈使得轻量级线程goroutine的初始栈可以很小，因此创建一个goroutine的代价很小，创建百万级的goroutine完全是可行的。
+Go语言的标准库 提供了清晰的构建模块和公共接口 :I/O操作、文本处理、图像、密码学、网络和分布式应用程序等,并支持许多标准化的文件格 式和编解码协议
 
 多核和网络化环境下越来越复杂的编程问题
