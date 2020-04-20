@@ -32,6 +32,10 @@ for _, line := range strings.Split(string(data), "\n")
 
 4.lissajous案例：
 gif动画
+调用image/gif包
+生成git
+gif.EncodeAll接收一个io.Writer
+./lissajous >out.gif 传入的是标准输出
 
 5.fetch案例：
 获取url

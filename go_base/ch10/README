@@ -1,0 +1,22 @@
+5.包的导入：
+_ "image/png" // register PNG decoder
+./mandelbrot | ./jpeg >mandelbrot.jpg
+将解码输入的PNG格式图像， 然后转换为JPEG格式的图像输出
+如果没有匿名导入 不能正确识别和解码PNG格式的图像
+
+主程序只需要匿名导入特定图像驱动包就可以用image.Decode解码对应格式的图像了
+
+import (
+"database/sql"
+_ "github.com/lib/pq" // enable support for Postgres
+_ "github.com/go-sql-driver/mysql" // enable support for MySQL
+)
+db, err = sql.Open("postgres", dbname) // OK
+db, err = sql.Open("mysql", dbname) // OK
+
+6.包命名
+一般要用短小的包名
+要避免包名有其它的含义 tempconv
+要考虑包名和成员名两个部分如何很好地配合 不要报名和成员名一样了
+
+7.
