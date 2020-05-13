@@ -12,7 +12,7 @@ import (
 
 const maxSize2 = 5 << 20 // 5MB
 
-func main() {
+func mainUpload() {
 	app := iris.New()
 	app.RegisterView(iris.HTML("./go_iris/templates", ".html"))
 	//将upload_form.html提供给客户端。

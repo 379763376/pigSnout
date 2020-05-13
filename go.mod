@@ -4,9 +4,11 @@ go 1.13
 
 require (
 	chai2010.cn/gobook v1.0.0
+	github.com/Joker/jade v1.0.0 // indirect
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/docker/docker v1.13.1
 	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072 // indirect
+	github.com/flosch/pongo2 v0.0.0-20190707114632-bbf5a6c351f4 // indirect
 	github.com/garyburd/redigo v1.6.0
 	github.com/gin-gonic/autotls v0.0.0-20191129055149-ffaac874b99f
 	github.com/gin-gonic/gin v1.5.0
@@ -15,9 +17,12 @@ require (
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/golang/protobuf v1.3.4
 	github.com/google/go-querystring v1.0.0 // indirect
+	github.com/gorilla/schema v1.1.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.12.2
 	github.com/imkira/go-interpol v1.1.0 // indirect
+	github.com/iris-contrib/formBinder v5.0.0+incompatible // indirect
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
+	github.com/kataras/iris v11.1.1+incompatible // indirect
 	github.com/kataras/iris/v12 v12.1.8
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.6 // indirect

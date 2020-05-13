@@ -536,6 +536,7 @@ func main13() {
 //14、web 测试框架 httpexpect
 //包iris/httptest提供Iris + httpexpect支持
 //15、Basic Authentication
+//使用 iris/httptest 测试 Basic Authentication.
 func newApp15() *iris.Application {
 	app := iris.New()
 
@@ -573,3 +574,6 @@ func main() {
 	app := newApp15()
 	app.Run(iris.Addr(":8080"))
 }
+//16.go test -v
+//17.测试cookies
+//go test -v -run=TestCookiesBasic$

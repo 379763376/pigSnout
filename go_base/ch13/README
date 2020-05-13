@@ -1,4 +1,4 @@
-使用unsafe包来摆脱Go语言规则带来的限制
+Go语言的实现刻意隐藏了很多底层细节,使用unsafe包来摆脱Go语言规则带来的限制
 创建C语言函数库的绑定
 进行系统调用
 在runtime、os、syscall还有net包等会用到unsafe
