@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-
+	"pigSnout/u2pppw/retriever/mock"
+	"pigSnout/u2pppw/retriever/real"
 	"time"
 
-	"imooc.com/ccmouse/learngo/retriever/mock"
-	"imooc.com/ccmouse/learngo/retriever/real"
 )
 
 type Retriever interface {

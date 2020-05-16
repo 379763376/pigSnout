@@ -99,7 +99,9 @@ defer wg.Done 每次结束goroutine的时候会调用
 wg.Wait()让所有goroutine都结束后再关闭管道，死锁 直到wg的counter是0
 
 wg.Wait()等待关闭channel放的位置：
-    不能放到主函数 因为他会直接让程序死锁
+    不能放主函数：
+        放main goroutine之前永远不会结束
+        放main goroutine之后不可达
 
 main goroutine是如何大部分的时间被唤醒执行其range循环，等待worker发送值或者closer来关闭channel的
 
@@ -135,18 +137,25 @@ CPU核数的限制计算负载
 
 <-time.After 启动一个新的channel 在经过具体的时间后 往该channel发送一个独立的值
 
+一个没有任何case的select语句写作 select{}，会永远地等待下去
+
 当多个case都满足时，select应该随机的选择一个执行，保证每一个channel都有被select的机会
+
 
 time.Tick节拍器函数会有内存泄漏，因为接收已经停止了，所以只有整个生命周期都需要这个时间 我们才用它比较合理
 
-我们应该使用time.NewTicker构造函数 拿到一个实例对象
-可以使用对象的stop方法，销毁这个goroutine，这样当用完ticker的时候就把管道关掉 把goroutine停掉 系统垃圾回收会把这个没有被引用的管道回收
+ticker := time.NewTicker(1 * time.Second)我们应该使用time.NewTicker构造函数 拿到一个实例对象
+<-ticker.C
+ticker.Stop()可以使用对象的stop方法，销毁这个goroutine，这样当用完ticker的时候就把管道关掉 把goroutine停掉 系统垃圾回收会把这个没有被引用的管道回收
 
 select语句中操作nil的channel永远都不会被select到
 nil来激活或者禁用case
 
 8.并发的目录遍历
 程序实现查看指定目录磁盘的使用情况
-当命令行传入-v是 每隔一段时间打印当前累加值
+当命令行传入-v是每隔一段时间打印当前累加值
 
 9.并发的退出
+定义一个channel 用来发送退出信号,使用select多路选择，
+
+10.聊天

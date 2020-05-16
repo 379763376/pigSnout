@@ -134,7 +134,7 @@ func makeThumbnails6(filenames <-chan string) int64 {
 
 	// closer
 	go func() {
-		wg.Wait()
+		wg.Wait() //保证在关闭worker后再关闭size
 		close(sizes)
 	}()
 
