@@ -1,0 +1,108 @@
+1.go test
+包里以_test.go为后缀的源文件并不是go build的一部分,是go test测试的一部分
+测试函数:以Test为函数名前缀 测试PASS or FAIL
+基准测试函数:以Benchmark为函数名前缀 衡量函数性能 多次计算取均值
+示例函数:以Example为函数名前缀
+
+2.测试函数
+go test执行过程:变量所有测试函数,生成一个临时的main包 用于调用相应的测试函数,构建 运行 报告测试结果 清理测试中生成的临时文件
+定义一个测试函数,需要导入test包,t参数用于报告测试失败和附加的日志信息
+func TestName(t *testing.T) {//...}
+t.Errorf
+go test -v 每个测试函数花费时间
+go test -v -run="French|Canal" 测试函数名被它正确匹配的测试函数才会被 go test 测试命令运行
+
+测试函数中定义一个测试数据,测试结果和期望结果相比较,不相同则包错
+
+失败测试的输出不会包含调用t.Errorf时刻的堆栈信息
+t.Errorf没有引起panic或程序停止测试执行
+前面数据失败,后面的测试数据依然会运行测试
+
+用t.Fatal或t.Fatalf停止当前测试函数 必须在和测试函数同一个goroutine内调用
+
+2.1 随机测试
+通过程序生成测试数据
+使用当前时间作为随机数种子,日志中简单地记录随机数种子,修改测试代码以重现失败的随机测试.
+seed := time.Now().UTC().UnixNano()
+
+2.2 测试一个命令
+main包只是TestEcho测试函数导入的一个普通包，里面main函数并没有被导出，而是被忽略的
+
+2.3 白盒测试
+黑盒测试:包公开的文档和API行为,只是调用了包的导出函数
+白盒测试:有访问包内部函数和数据结构的权限,调用或修改了包级变量,2.2章节
+
+将产品代码的部分对象替换为一个容易测试的伪对象
+方便配置，容易预测，更可靠，也更容易观察,避免一些不良的副作用
+
+建议使用defer语句来延后执行处理恢复
+案例storage2:
+    saved := notifyUser
+    defer func() { notifyUser = saved }()
+
+2.4 扩展测试包
+Go语言规范是禁止包的循环依赖的
+net/http依赖net/url
+测试net/url包 不能引入net/http包
+
+通过测试扩展包的方式解决循环依赖的问题
+也就是在net/url包所在的目录声明一个独立的url_test测试扩展包,它并不能被其他任何包导入
+
+go list -f={{.GoFiles}} fmt  命令中GoFiles表示产品代码对应的Go源文件列表
+go list -f={{.TestGoFiles}} fmt 命令中TestGoFiles表示的是fmt包内部测试测试代码，以_test.go为后缀文件名
+go list -f={{.XTestGoFiles}} fmt 命令中XTestGoFiles表示的是属于测试扩展包的测试代码，也就是fmt_test包,因此它们必须先导入fmt包
+
+扩展包也需要访问测试包内部代码,在包内一个_test.go导出一个内部的实现给测试扩展包
+因为这些代码只有在测试时才需要，因此一般会放在export_test.go文件中
+
+fmt包中的export_test.go函数的作用:
+fmt通过一个秘密出口导出了isSpace函数,var IsSpace = isSpa
+通过fmt.IsSpace简单导出了内部的isSpace函数，提供给测试扩展包使用
+
+
+2.5 编写有效的测试
+报告调用的具体函数、它的输入和结果的意义、真实返回的值和期望返回的值
+断言失败依然会继续尝试运行更多的测试
+可以用像IsPalindrome的表驱动测试那样来准备更多的s和sep测试用例
+
+
+类似reflect.DeepEqual辅助函数(13.3章节)
+最好的接口是直接从库的抽象接口开始，针对公共接口编写一些测试函数
+
+2.6 避免不稳定的测试
+避免脆弱测试代码的方法是只检测你真正关心的属性
+
+3.测试覆盖率
+go test -v -run=Coverage gopl.io/ch7/eval
+go tool cover
+go test -run=Coverage -coverprofile=c.out gopl.io/ch7/eval
+-coverprofile标志参数通过在测试代码中插入生成钩子来统计覆盖率数据
+
+-covermode=count 标志参数，那么将在每个代码块插入一个计数器
+
+打印了测试日志，生成一个HTML报告
+go tool cover -html=c.out
+
+测试覆盖率工具可以帮助我们快速识别测试薄弱的地方
+但是设计好的测试用例和编写应用代码一样需要严密的思考
+
+4.基准测试
+测量一个程序在固定工作负载下的性能
+函数以Benchmark为前缀名
+带有一个 *testing.B 类型的参数
+*testing.B 参数除了提供和 *testing.T 类似的方法，还有额外一些和性能测量相关的方法,还提供了一个整数N，用于指定操作执行的循环次数
+
+func BenchmarkIsPalindrome
+默认情况下不运行任何基准测试
+go test -bench=.  匹配所有基准测试函数 -bench=IsPalindrome
+
+试前先尝试用较小的N运行测试来估算基准测试函数所需要的时间
+然后推断一个较大的时间保证稳定的测量结果
+
+BenchmarkIsPalindrome-8 100000 1035 ns/op
+8表示运行时对应的GOMAXPROCS的值 并发相关的基准测试
+
+5.剖析
+
+示例
+
