@@ -92,7 +92,7 @@ go tool cover -html=c.out
 带有一个 *testing.B 类型的参数
 *testing.B 参数除了提供和 *testing.T 类似的方法，还有额外一些和性能测量相关的方法,还提供了一个整数N，用于指定操作执行的循环次数
 
-func BenchmarkIsPalindrome
+func BenchmarkIsPalindrome(b *testing.B) {
 默认情况下不运行任何基准测试
 go test -bench=.  匹配所有基准测试函数 -bench=IsPalindrome
 
@@ -102,7 +102,20 @@ go test -bench=.  匹配所有基准测试函数 -bench=IsPalindrome
 BenchmarkIsPalindrome-8 100000 1035 ns/op
 8表示运行时对应的GOMAXPROCS的值 并发相关的基准测试
 
+-benchmem 命令行标志参数将在报告中包含内存的分配数据统计
+
+I/O设置多大问题:
+基准测试可以帮助我们选择较小的缓存但能带来满意的性能
+eg:评估两种不同算法对于相同的输入在不同的场景和负载下的优缺点
+func benchmark(b *testing.B, size int) { /* ... */ }
+func Benchmark10(b *testing.B) { benchmark(b, 10) }
+func Benchmark100(b *testing.B) { benchmark(b, 100) }
+
 5.剖析
+动化的剖析技术
+基于程序执行期间一些抽样数据，然后推断后面的执行状态
+最终产生一个运行时间的统计数据文件
+
 
 示例
 
