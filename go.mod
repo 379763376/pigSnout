@@ -14,6 +14,7 @@ require (
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-playground/locales v0.13.0
 	github.com/go-playground/universal-translator v0.17.0
+	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/golang/protobuf v1.3.4
 	github.com/google/go-querystring v1.0.0 // indirect
@@ -40,6 +41,7 @@ require (
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e
+	golang.org/x/tools v0.0.0-20200612220849-54c614fe050c // indirect
 	google.golang.org/genproto v0.0.0-20190927181202-20e1ac93f88c
 	google.golang.org/grpc v1.26.0
 	gopkg.in/go-playground/validator.v9 v9.29.1
