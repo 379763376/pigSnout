@@ -32,8 +32,8 @@ func New(f Func) *Memo {
 type Memo struct {
 	f     Func
 	mu    sync.Mutex // guards cache
-	cache map[string]*
-	}
+	cache map[string]*entry
+}
 
 func (memo *Memo) Get(key string) (value interface{}, err error) {
 	memo.mu.Lock()
