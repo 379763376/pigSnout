@@ -1,0 +1,58 @@
+反射:
+在编译时并不知道这些变量的具体类型
+在运行时更新变量和检查它们的值、调用它们的方法和它们支持的内在操作，但是在编译时并不知道这些变量的具体类型
+
+将类型本身作为第一类的值类型处理？？？
+反射是一个复杂的内省技术，不应该随意使用，因此，尽管上面这些包内部都是用反射技术实现的，但是它们自己的API都没有公开反射相关的接口
+
+1、为何需要反射
+例如函数接收空接口类型，无法使用swtich匹配到所有类型
+
+2、reflect.Type和reflect.Value
+reflect.TypeOf 接受任意的 interface{} 类型
+t := reflect.TypeOf(3)
+    返回对应动态类型的reflect.Type
+    t包含两个信息的接口值: 操作数的动态类型(这里是int)和它的动态的值(这里是3).
+    返回的是一个动态类型的接口值, 它总是返回具体的类型，所以引用类型返回的是指针类型
+fmt.Printf 内部使用 reflect.TypeOf 的结果输
+
+
+reflect.ValueOf 接受任意的 interface{} 类型
+v := reflect.ValueOf(3)
+    返回对应动态类型的reflect.Value
+t := v.Type()
+    调用 Value 的 Type 方法将返回具体类型所对应的 reflect.Type
+x := v.Interface()  逆操作：调用reflect.ValueOf 对应的 reflect.Value.Interface 方法
+    返回一个 interface{} 类型，表示reflect.Value 对应类型的具体值
+
+reflect.Value 和 interface{} 都能保存任意的值
+空接口 隐藏了值对应的表示方式和所有的公开的方法  知道具体的动态类型才能使用类型断言来访问 内部的值
+Value 则有很多方法来检查其内容
+
+reflect.Value 的 Kind，替代之前的类型 switch
+    reflect.Invalid
+        空的 reflect.Value 对应 Invalid 无效类型
+    reflect.Int、8、16、32、64 使用strconv.FormatInt(v.Int(), 10)
+    reflect.Uint、8、16、32、64 、Uintptr使用strconv.FormatUint(v.Uint(), 10)
+    strconv.FormatBool使用strconv.FormatBool(v.Bool())
+    reflect.String使用strconv.Quote(v.String())
+    float、complex ...
+    reflect.Chan, reflect.Func, reflect.Ptr, reflect.Slice, reflect.Map
+        使用v.Type().String() + " 0x" + strconv.FormatUint(uint64(v.Pointer()), 16)
+        十六进制类型的引用地址
+    reflect.Array, reflect.Struct, reflect.Interface
+        使用 v.Type().String() + " value"
+        类型的值
+
+对上面的这些类型判断封装：
+    Any（value interface{}） string { return formatAtom(reflect.ValueOf(value)) }
+
+
+Kind 只关心底层表示, format.Any 也支持新命名的类型
+var x int64 = 1
+var d time.Duration = 1 * time.Nanosecond
+fmt.Println(format.Any(x)) // "1"
+fmt.Println(format.Any(d)) // "1"
+fmt.Println(format.Any([]int64{x})) // "[]int64 0x8202b87b0"
+fmt.Println(format.Any([]time.Duration{d})) // "[]time.Duration 0x8202b87e0"
+

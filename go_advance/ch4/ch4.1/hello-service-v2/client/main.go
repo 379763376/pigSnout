@@ -1,7 +1,7 @@
 package main
 
 import (
-	"chai2010.cn/gobook/examples/ch4.1/hello-service-v2/api"
+	"pigSnout/go_advance/ch4/ch4.1/hello-service-v2/api"
 	"fmt"
 	"log"
 

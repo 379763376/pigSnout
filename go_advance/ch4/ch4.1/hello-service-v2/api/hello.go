@@ -2,7 +2,7 @@ package api
 
 import "net/rpc"
 
-const HelloServiceName = "path/to/pkg.HelloService"
+const HelloServiceName = "pigSnout/go_advance/ch4/ch4.1/hello-service-v2/server.HelloService"
 
 type HelloServiceInterface = interface {
 	Hello(request string, reply *string) error

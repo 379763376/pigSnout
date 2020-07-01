@@ -1,3 +1,8 @@
+
+
+多语言构建系统 类似Bazel的构建系统
+包名的三种例外：
+    main
 5.包的导入：
 _ "image/png" // register PNG decoder
 ./mandelbrot | ./jpeg >mandelbrot.jpg
