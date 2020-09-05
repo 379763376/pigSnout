@@ -1,3 +1,7 @@
+接口类型
+不会暴露出它所代表的对象的内部值的结构和这个对象支持的基础操作的集合
+
+
 1.接口约定
 接口只定义方法，使用者只用知道这个接口可以干什么
 fmt.Printf和Sprintf
@@ -36,7 +40,7 @@ flag.Value接口实现，扩展参数
 接口实现和调用函数封装步骤：
     a.定义一个Flag结构体 包含一个结构体
     b.Flag结构体指针 实现Set方法
-    fmt.Sscanf：使用接收一个string 安装format分割，传递给指定的变量
+    fmt.Sscanf：使用接收一个string 按照format分割，传递给指定的变量
     修改实例中的成员值
     c.封装一个函数，返回Flag结构体成员
     flag.CommandLine.Var

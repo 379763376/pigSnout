@@ -18,11 +18,11 @@ os.Args[0], 是命令本身的名字
 os.Args 参数从1开始 os.Args[1:]
 如果省略切片表达式的m或n，会默认传入0或 len(s)
 for initialization; condition; post{}
-for循环的这三个部分每个都可以省略 省略 initialization 和 post ，分号也可以省 略
+for循环的这三个部分每个都可以省略 省略 initialization 和 post ，分号也可以省略
 for _, arg := range os.Args[1:]  空标识符 （blank identifier），即 _ （也就是下划线）
 以上方案多次赋值给s 开辟新空间 旧空间回收
 strings.Join(os.Args[1:], " ") 简单且高效的解决方案
-fmt.Println(os.Args[1:]) 被放到了一对方括号里。切片都 会被打印成这种格式
+fmt.Println(os.Args[1:]) 被放到了一对方括号里。切片都会被打印成这种格式
 变量会在声明时直接初始化。如果变量没有显 式初始化，则被隐式地赋予其类型的零值（zero value）
 
 

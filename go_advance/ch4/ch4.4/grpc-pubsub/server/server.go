@@ -10,7 +10,7 @@ import (
 	"github.com/docker/docker/pkg/pubsub"
 	"google.golang.org/grpc"
 
-	pb "chai2010.cn/gobook/examples/ch4.4/grpc-pubsub/pubsubservice"
+	pb "pigSnout/go_advance/ch4/ch4.4/grpc-pubsub/pubsubservice"
 )
 
 type PubsubService struct {
